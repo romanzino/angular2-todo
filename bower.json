@@ -1,0 +1,22 @@
+{
+  "name": "angular2-Todo",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Linnas <zino.roman95@gmail.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}

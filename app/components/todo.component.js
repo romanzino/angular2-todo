@@ -26,7 +26,7 @@ System.register(['angular2/core', './todo-form.component'], function(exports_1, 
                 }
                 TodoComponent = __decorate([
                     core_1.Component({
-                        selector: 'todo',
+                        selector: 'todo-app',
                         directives: [todo_form_component_1.TodoFormComponent],
                         templateUrl: './app/components/templates/todo.component.html'
                     }), 

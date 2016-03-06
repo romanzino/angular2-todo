@@ -1,12 +1,14 @@
 <h2>Add task to list</h2>
 
-<form class="form-horizontal" action="#" method="post">
-  <div class="form-group">
-    <div class="col-sm-9">
-      <input type="text" class="form-control" placeholder="Task name" [(ngModel)]="model.title" ngControl="task" #task>
+<form class="row" action="#" method="post" #todoForm="ngForm" (ngSubmit)="onSubmit()" #todoForm="ngForm">
+  <div class="col-sm-9">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Task name" required [(ngModel)]="model.title" ngControl="title" #title="ngForm">
     </div>
-    <div class="col-sm-3">
-      <button class="btn btn-block btn-success">Add</button>
+  </div>
+  <div class="col-sm-3">
+    <div class="form-group">
+      <button class="btn btn-block btn-success" [disabled]="!todoForm.form.valid">Add</button>
     </div>
   </div>
 </form>

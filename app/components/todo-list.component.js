@@ -1,4 +1,4 @@
-System.register(['angular2/core', './todo-form.component', './todo-list.component'], function(exports_1, context_1) {
+System.register(['angular2/core', '../services/todo.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,35 +10,34 @@ System.register(['angular2/core', './todo-form.component', './todo-list.componen
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, todo_form_component_1, todo_list_component_1;
-    var TodoComponent;
+    var core_1, todo_service_1;
+    var TodoListComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (todo_form_component_1_1) {
-                todo_form_component_1 = todo_form_component_1_1;
-            },
-            function (todo_list_component_1_1) {
-                todo_list_component_1 = todo_list_component_1_1;
+            function (todo_service_1_1) {
+                todo_service_1 = todo_service_1_1;
             }],
         execute: function() {
-            TodoComponent = (function () {
-                function TodoComponent() {
+            TodoListComponent = (function () {
+                function TodoListComponent(TodoService) {
+                    this.TodoService = TodoService;
                 }
-                TodoComponent = __decorate([
+                TodoListComponent.prototype.removeTodo = function () {
+                };
+                TodoListComponent = __decorate([
                     core_1.Component({
-                        selector: 'todo-app',
-                        directives: [todo_form_component_1.TodoFormComponent, todo_list_component_1.TodoListComponent],
-                        templateUrl: './app/components/templates/todo.component.html'
+                        selector: 'todo-list',
+                        templateUrl: './app/components/templates/todo-list.component.html'
                     }), 
-                    __metadata('design:paramtypes', [])
-                ], TodoComponent);
-                return TodoComponent;
+                    __metadata('design:paramtypes', [todo_service_1.TodoService])
+                ], TodoListComponent);
+                return TodoListComponent;
             }());
-            exports_1("TodoComponent", TodoComponent);
+            exports_1("TodoListComponent", TodoListComponent);
         }
     }
 });
-//# sourceMappingURL=todo.component.js.map
+//# sourceMappingURL=todo-list.component.js.map

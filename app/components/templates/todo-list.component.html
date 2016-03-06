@@ -1,0 +1,13 @@
+<div class="well" *ngIf="TodoService.todos.length > 0">
+
+	<h3>List of actuals todos</h3>
+
+	<ul class="list-group">
+		<li class="list-group-item" *ngFor="#todo of TodoService.todos">
+			{{todo.title}}
+			<button type="button" class="close" aria-label="Close" (click)="removeTodo()">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</li>
+	</ul>
+</div>

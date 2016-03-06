@@ -2,8 +2,8 @@ export class TodoModel {
   status: string;
   title: string;
 
-  constructor({title}) {
+  constructor({title, status = 'started'}) {
   	this.title = title;
-  	this.status = 'started';
+  	this.status = status;
   }
 }

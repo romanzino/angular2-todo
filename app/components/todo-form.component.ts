@@ -1,4 +1,5 @@
 import {Component} from 'angular2/core';
+import {TodoService} from '../services/todo.service';
 
 @Component({
   selector: 'todo-form',
@@ -6,11 +7,16 @@ import {Component} from 'angular2/core';
 })
 
 export class TodoFormComponent {
-  items: string[] = ['First option', 'Second option'];
-  model: {} = {};
-  models: Array<{}>;
+  formData: {} = {};
 
-  task() {
-    console.log(1);
+  constructor(public TodoService: TodoService) {}
+
+  onSubmit() {
+  	this.TodoService.createTodo(this.formData);
+  	this.reset();
+  }
+
+  reset() {
+  	this.formData = {};
   }
 }

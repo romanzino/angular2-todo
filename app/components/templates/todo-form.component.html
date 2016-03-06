@@ -1,9 +1,9 @@
 <h2>Add task to list</h2>
 
-<form class="row" action="#" method="post" #todoForm="ngForm" (ngSubmit)="onSubmit()" #todoForm="ngForm">
+<form class="row" action="#" method="post" #todoForm="ngForm" (ngSubmit)="onSubmit()">
   <div class="col-sm-9">
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="Task name" required [(ngModel)]="model.title" ngControl="title" #title="ngForm">
+      <input type="text" class="form-control" placeholder="Task name" required [(ngModel)]="formData.title" ngControl="title" #title="ngForm">
     </div>
   </div>
   <div class="col-sm-3">

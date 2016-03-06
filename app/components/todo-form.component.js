@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1, context_1) {
+System.register(['angular2/core', '../services/todo.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,28 +10,35 @@ System.register(['angular2/core'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, todo_service_1;
     var TodoFormComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (todo_service_1_1) {
+                todo_service_1 = todo_service_1_1;
             }],
         execute: function() {
             TodoFormComponent = (function () {
-                function TodoFormComponent() {
-                    this.items = ['First option', 'Second option'];
-                    this.model = {};
+                function TodoFormComponent(TodoService) {
+                    this.TodoService = TodoService;
+                    this.formData = {};
                 }
-                TodoFormComponent.prototype.task = function () {
-                    console.log(1);
+                TodoFormComponent.prototype.onSubmit = function () {
+                    this.TodoService.createTodo(this.formData);
+                    this.reset();
+                };
+                TodoFormComponent.prototype.reset = function () {
+                    this.formData = {};
                 };
                 TodoFormComponent = __decorate([
                     core_1.Component({
                         selector: 'todo-form',
                         templateUrl: './app/components/templates/todo-form.component.html'
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [todo_service_1.TodoService])
                 ], TodoFormComponent);
                 return TodoFormComponent;
             }());

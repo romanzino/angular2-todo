@@ -8,11 +8,11 @@ import {TodoService} from '../services/todo.service';
 })
 
 export class TodoListComponent {
-	constructor(public TodoService:TodoService) {
+	constructor(public TodoService: TodoService) {
 
 	}
 
-	removeTodo() {
-		
+	removeTodo(index: number) {
+		this.TodoService.removeTodo(index);
 	}
 }

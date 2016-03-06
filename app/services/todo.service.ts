@@ -8,4 +8,8 @@ export class TodoService {
 	createTodo(todo: {}) {
 		this.todos.push(new TodoModel(todo));
 	}
+
+	removeTodo(index: number) {
+		this.todos.splice(index, 1);
+	}
 }

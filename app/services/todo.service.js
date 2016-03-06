@@ -28,6 +28,9 @@ System.register(['../models/todo.model', 'angular2/core'], function(exports_1, c
                 TodoService.prototype.createTodo = function (todo) {
                     this.todos.push(new todo_model_1.TodoModel(todo));
                 };
+                TodoService.prototype.removeTodo = function (index) {
+                    this.todos.splice(index, 1);
+                };
                 TodoService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [])

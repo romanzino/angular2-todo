@@ -3,9 +3,9 @@
 	<h3>List of actuals todos</h3>
 
 	<ul class="list-group">
-		<li class="list-group-item" *ngFor="#todo of TodoService.todos">
+		<li class="list-group-item" *ngFor="#todo of TodoService.todos; #index = index">
 			{{todo.title}}
-			<button type="button" class="close" aria-label="Close" (click)="removeTodo()">
+			<button type="button" class="close" aria-label="Close" (click)="removeTodo(index)">
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</li>

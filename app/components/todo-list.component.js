@@ -25,7 +25,8 @@ System.register(['angular2/core', '../services/todo.service'], function(exports_
                 function TodoListComponent(TodoService) {
                     this.TodoService = TodoService;
                 }
-                TodoListComponent.prototype.removeTodo = function () {
+                TodoListComponent.prototype.removeTodo = function (index) {
+                    this.TodoService.removeTodo(index);
                 };
                 TodoListComponent = __decorate([
                     core_1.Component({

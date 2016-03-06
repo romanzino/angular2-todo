@@ -24,6 +24,11 @@ export class TodoService {
 		this.saveTodos();
 	}
 
+	updateTodo({todoId, todoTitle}) {
+		this.todos[todoId].title = todoTitle;
+		this.saveTodos();
+	}
+
 	saveTodos() {
 		let data = JSON.stringify(this.todos);
 		localStorage.setItem(TodoService.localStorageIndex, data);

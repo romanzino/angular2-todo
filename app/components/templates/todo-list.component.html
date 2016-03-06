@@ -3,9 +3,16 @@
 	<h3>List of actuals todos ({{TodoService.todos.length}})</h3>
 
 	<ul class="list-group">
-		<li class="list-group-item" *ngFor="#todo of TodoService.todos; #index = index">
-			{{todo.title}}
-			<button type="button" class="close" aria-label="Close" (click)="removeTodo(index)">
+		<li class="list-group-item" *ngFor="#todo of TodoService.todos; #index = index" (dblclick)="editTodo(index)">
+			<span *ngIf="todoIdThatIsEdited !== index">{{todo.title}}</span>
+			
+			<input type="text" class="form-control" value="{{todo.title}}" 
+			*ngIf="todoIdThatIsEdited === index"
+			(blur)="tryToStopEditingTodo(todoThatIsEdited.value, $event)"
+			(keypress)="tryToStopEditingTodo(todoThatIsEdited.value, $event)" #todoThatIsEdited>
+			
+			<button *ngIf="todoIdThatIsEdited !== index" type="button" class="close" aria-label="Close"
+			(click)="removeTodo(index)">
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</li>

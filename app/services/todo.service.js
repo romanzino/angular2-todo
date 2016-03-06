@@ -38,6 +38,11 @@ System.register(['../models/todo.model', 'angular2/core'], function(exports_1, c
                     this.todos.splice(index, 1);
                     this.saveTodos();
                 };
+                TodoService.prototype.updateTodo = function (_a) {
+                    var todoId = _a.todoId, todoTitle = _a.todoTitle;
+                    this.todos[todoId].title = todoTitle;
+                    this.saveTodos();
+                };
                 TodoService.prototype.saveTodos = function () {
                     var data = JSON.stringify(this.todos);
                     localStorage.setItem(TodoService.localStorageIndex, data);

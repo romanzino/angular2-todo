@@ -28,6 +28,29 @@ System.register(['angular2/core', '../services/todo.service'], function(exports_
                 TodoListComponent.prototype.removeTodo = function (index) {
                     this.TodoService.removeTodo(index);
                 };
+                TodoListComponent.prototype.editTodo = function (index) {
+                    this.todoIdThatIsEdited = index;
+                };
+                TodoListComponent.prototype.tryToStopEditingTodo = function (todoTitle, event) {
+                    if (event.type === 'keypress') {
+                        //13 is a code of enter button
+                        if (event.keyCode === 13) {
+                            this.stopEditingTodo(todoTitle);
+                        }
+                    }
+                    else if (event.type === 'blur') {
+                        if (this.todoIdThatIsEdited) {
+                            this.stopEditingTodo(todoTitle);
+                        }
+                    }
+                };
+                TodoListComponent.prototype.stopEditingTodo = function (todoTitle) {
+                    this.TodoService.updateTodo({
+                        todoId: this.todoIdThatIsEdited,
+                        todoTitle: todoTitle
+                    });
+                    this.todoIdThatIsEdited = null;
+                };
                 TodoListComponent = __decorate([
                     core_1.Component({
                         selector: 'todo-list',

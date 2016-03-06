@@ -24,13 +24,25 @@ System.register(['../models/todo.model', 'angular2/core'], function(exports_1, c
             TodoService = (function () {
                 function TodoService() {
                     this.todos = [];
+                    var todosFromLocalStorage = JSON.parse(localStorage.getItem(TodoService.localStorageIndex) || '[]');
+                    for (var _i = 0, todosFromLocalStorage_1 = todosFromLocalStorage; _i < todosFromLocalStorage_1.length; _i++) {
+                        var todo = todosFromLocalStorage_1[_i];
+                        this.todos.push(todo);
+                    }
                 }
                 TodoService.prototype.createTodo = function (todo) {
                     this.todos.push(new todo_model_1.TodoModel(todo));
+                    this.saveTodos();
                 };
                 TodoService.prototype.removeTodo = function (index) {
                     this.todos.splice(index, 1);
+                    this.saveTodos();
                 };
+                TodoService.prototype.saveTodos = function () {
+                    var data = JSON.stringify(this.todos);
+                    localStorage.setItem(TodoService.localStorageIndex, data);
+                };
+                TodoService.localStorageIndex = 'angular2-todo';
                 TodoService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [])

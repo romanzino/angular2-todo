@@ -7,7 +7,7 @@ System.register([], function(exports_1, context_1) {
         execute: function() {
             TodoModel = (function () {
                 function TodoModel(_a) {
-                    var title = _a.title, _b = _a.status, status = _b === void 0 ? 'started' : _b;
+                    var _b = _a === void 0 ? {} : _a, _c = _b.title, title = _c === void 0 ? '' : _c, _d = _b.status, status = _d === void 0 ? 'started' : _d;
                     this.title = title;
                     this.status = status;
                 }

@@ -1,6 +1,6 @@
 <div class="well" *ngIf="TodoService.todos.length > 0">
 
-	<h3>List of actuals todos</h3>
+	<h3>List of actuals todos ({{TodoService.todos.length}})</h3>
 
 	<ul class="list-group">
 		<li class="list-group-item" *ngFor="#todo of TodoService.todos; #index = index">

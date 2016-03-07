@@ -39,7 +39,7 @@ System.register(['angular2/core', '../services/todo.service'], function(exports_
                         }
                     }
                     else if (event.type === 'blur') {
-                        if (this.todoIdThatIsEdited) {
+                        if (this.todoIdThatIsEdited > -1) {
                             this.stopEditingTodo(todoTitle);
                         }
                     }
@@ -49,7 +49,7 @@ System.register(['angular2/core', '../services/todo.service'], function(exports_
                         todoId: this.todoIdThatIsEdited,
                         todoTitle: todoTitle
                     });
-                    this.todoIdThatIsEdited = null;
+                    this.todoIdThatIsEdited = -1;
                 };
                 TodoListComponent = __decorate([
                     core_1.Component({

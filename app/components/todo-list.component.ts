@@ -8,7 +8,7 @@ import {TodoService} from '../services/todo.service';
 })
 
 export class TodoListComponent {
-	private todoIdThatIsEdited: number;
+	todoIdThatIsEdited: number;
 
 	constructor(public TodoService: TodoService) {
 
@@ -30,7 +30,7 @@ export class TodoListComponent {
 			}
 		}
 		else if (event.type === 'blur') {
-			if (this.todoIdThatIsEdited) {
+			if (this.todoIdThatIsEdited > -1) {
 				this.stopEditingTodo(todoTitle);	
 			}
 		}
@@ -42,6 +42,6 @@ export class TodoListComponent {
 			todoTitle: todoTitle
 		});
 
-		this.todoIdThatIsEdited = null;
+		this.todoIdThatIsEdited = -1;
 	}
 }

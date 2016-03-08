@@ -1,0 +1,14 @@
+<form #todoSearchForm="ngForm">
+	<div class="row">
+		<div class="col-sm-9 col-md-10">
+			<div class="form-group">
+				<input type="text" class="form-control" required placeholder="Search todo in list" ngControl="todoSearchTermInput" #todoSearchTermInput (input)="searchTermUpdate.emit(todoSearchTermInput.value)">
+			</div>
+		</div>
+		<div class="col-sm-3 col-md-2">
+			<div class="form-group">
+				<button class="btn btn-info btn-block" [disabled]="!todoSearchForm.form.valid">Search</button>
+			</div>
+		</div>
+	</div>
+</form>

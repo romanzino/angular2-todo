@@ -2,8 +2,10 @@
 
 	<h3>List of actuals todos ({{TodoService.todos.length}})</h3>
 
+	<todo-search (searchTermUpdate)="searchTerm = $event"></todo-search>
+
 	<ul class="list-group">
-		<li class="list-group-item" *ngFor="#todo of TodoService.todos; #index = index" (dblclick)="editTodo(index)">
+		<li class="list-group-item" *ngFor="#todo of TodoService.todos | todosearch : searchTerm; #index = index" (dblclick)="editTodo(index)">
 			<span *ngIf="todoIdThatIsEdited !== index">{{todo.title}}</span>
 			
 			<input type="text" class="form-control" value="{{todo.title}}" 

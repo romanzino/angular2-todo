@@ -41,7 +41,7 @@ export class TodoService {
 			currentTodo.status = 'started';
 		}
 
-		console.log(currentTodo);
+		this.saveTodos();
 	}
 
 	saveTodos() {

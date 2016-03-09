@@ -52,7 +52,7 @@ System.register(['../models/todo.model', 'angular2/core'], function(exports_1, c
                     else {
                         currentTodo.status = 'started';
                     }
-                    console.log(currentTodo);
+                    this.saveTodos();
                 };
                 TodoService.prototype.saveTodos = function () {
                     var data = JSON.stringify(this.todos);

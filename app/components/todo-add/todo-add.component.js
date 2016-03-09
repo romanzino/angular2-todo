@@ -1,4 +1,4 @@
-System.register(['angular2/core', '../services/todo.service'], function(exports_1, context_1) {
+System.register(['angular2/core', '../../services/todo.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -36,7 +36,7 @@ System.register(['angular2/core', '../services/todo.service'], function(exports_
                 TodoAddComponent = __decorate([
                     core_1.Component({
                         selector: 'todo-add',
-                        templateUrl: './app/components/templates/todo-add.component.html'
+                        templateUrl: './app/components/todo-add/todo-add.component.html'
                     }), 
                     __metadata('design:paramtypes', [todo_service_1.TodoService])
                 ], TodoAddComponent);

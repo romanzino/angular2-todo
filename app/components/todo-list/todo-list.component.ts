@@ -1,14 +1,14 @@
 import {Component} from 'angular2/core';
-import {TodoService} from '../services/todo.service';
-import {TodoSearchComponent} from './todo-search.component';
-import {TodoSearchPipe} from '../pipes/todo-search.pipe';
+import {TodoService} from '../../services/todo.service';
+import {TodoSearchComponent} from '../todo-search/todo-search.component';
+import {TodoSearchPipe} from '../../pipes/todo-search.pipe';
 
 @Component({
   selector: 'todo-list',
   directives: [TodoSearchComponent],
   pipes: [TodoSearchPipe],
-  templateUrl: './app/components/templates/todo-list.component.html',
-  styleUrls: ['./app/components/todo-list.component.css']
+  templateUrl: './app/components/todo-list/todo-list.component.html',
+  styleUrls: ['./app/components/todo-list/todo-list.component.css']
 })
 
 export class TodoListComponent {

@@ -1,4 +1,4 @@
-System.register(['angular2/core', './todo-add.component', './todo-list.component'], function(exports_1, context_1) {
+System.register(['angular2/core', './todo-add/todo-add.component', './todo-list/todo-list.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -31,7 +31,7 @@ System.register(['angular2/core', './todo-add.component', './todo-list.component
                     core_1.Component({
                         selector: 'todo-app',
                         directives: [todo_add_component_1.TodoAddComponent, todo_list_component_1.TodoListComponent],
-                        templateUrl: './app/components/templates/todo.component.html'
+                        templateUrl: './app/components/todo.component.html'
                     }), 
                     __metadata('design:paramtypes', [])
                 ], TodoComponent);

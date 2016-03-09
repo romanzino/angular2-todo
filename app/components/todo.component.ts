@@ -1,10 +1,10 @@
 import {Component} from 'angular2/core';
-import {TodoFormComponent} from './todo-form.component';
+import {TodoAddComponent} from './todo-add.component';
 import {TodoListComponent} from './todo-list.component';
 
 @Component({
   selector: 'todo-app',
-  directives: [TodoFormComponent, TodoListComponent],
+  directives: [TodoAddComponent, TodoListComponent],
   templateUrl: './app/components/templates/todo.component.html'
 })
 

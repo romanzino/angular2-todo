@@ -2,11 +2,11 @@ import {Component} from 'angular2/core';
 import {TodoService} from '../services/todo.service';
 
 @Component({
-  selector: 'todo-form',
-  templateUrl: './app/components/templates/todo-form.component.html'
+  selector: 'todo-add',
+  templateUrl: './app/components/templates/todo-add.component.html'
 })
 
-export class TodoFormComponent {
+export class TodoAddComponent {
   formData: {} = {};
 
   constructor(public TodoService: TodoService) {}

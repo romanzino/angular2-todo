@@ -11,7 +11,7 @@ System.register(['angular2/core', '../services/todo.service'], function(exports_
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, todo_service_1;
-    var TodoFormComponent;
+    var TodoAddComponent;
     return {
         setters:[
             function (core_1_1) {
@@ -21,29 +21,29 @@ System.register(['angular2/core', '../services/todo.service'], function(exports_
                 todo_service_1 = todo_service_1_1;
             }],
         execute: function() {
-            TodoFormComponent = (function () {
-                function TodoFormComponent(TodoService) {
+            TodoAddComponent = (function () {
+                function TodoAddComponent(TodoService) {
                     this.TodoService = TodoService;
                     this.formData = {};
                 }
-                TodoFormComponent.prototype.onSubmit = function () {
+                TodoAddComponent.prototype.onSubmit = function () {
                     this.TodoService.createTodo(this.formData);
                     this.reset();
                 };
-                TodoFormComponent.prototype.reset = function () {
+                TodoAddComponent.prototype.reset = function () {
                     this.formData = {};
                 };
-                TodoFormComponent = __decorate([
+                TodoAddComponent = __decorate([
                     core_1.Component({
-                        selector: 'todo-form',
-                        templateUrl: './app/components/templates/todo-form.component.html'
+                        selector: 'todo-add',
+                        templateUrl: './app/components/templates/todo-add.component.html'
                     }), 
                     __metadata('design:paramtypes', [todo_service_1.TodoService])
-                ], TodoFormComponent);
-                return TodoFormComponent;
+                ], TodoAddComponent);
+                return TodoAddComponent;
             }());
-            exports_1("TodoFormComponent", TodoFormComponent);
+            exports_1("TodoAddComponent", TodoAddComponent);
         }
     }
 });
-//# sourceMappingURL=todo-form.component.js.map
+//# sourceMappingURL=todo-add.component.js.map

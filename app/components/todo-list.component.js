@@ -32,11 +32,14 @@ System.register(['angular2/core', '../services/todo.service', './todo-search.com
                     this.TodoService = TodoService;
                     this.searchTerm = '';
                 }
-                TodoListComponent.prototype.removeTodo = function (index) {
-                    this.TodoService.removeTodo(index);
+                TodoListComponent.prototype.removeTodo = function (todoId) {
+                    this.TodoService.removeTodo(todoId);
                 };
-                TodoListComponent.prototype.editTodo = function (index) {
-                    this.todoIdThatIsEdited = index;
+                TodoListComponent.prototype.editTodo = function (todoId) {
+                    this.todoIdThatIsEdited = todoId;
+                };
+                TodoListComponent.prototype.toggleStateOfTodo = function (todoId) {
+                    this.TodoService.toggleStateOfTodo(todoId);
                 };
                 TodoListComponent.prototype.tryToStopEditingTodo = function (todoTitle, event) {
                     if (event.type === 'keypress') {

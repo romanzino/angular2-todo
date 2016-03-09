@@ -18,12 +18,16 @@ export class TodoListComponent {
 
 	}
 
-	removeTodo(index: number) {
-		this.TodoService.removeTodo(index);
+	removeTodo(todoId: number) {
+		this.TodoService.removeTodo(todoId);
 	}
 
-	editTodo(index: number) {
-		this.todoIdThatIsEdited = index;
+	editTodo(todoId: number) {
+		this.todoIdThatIsEdited = todoId;
+	}
+
+	toggleStateOfTodo(todoId: number) {
+		this.TodoService.toggleStateOfTodo(todoId);
 	}
 
 	tryToStopEditingTodo(todoTitle: string, event: Event) {

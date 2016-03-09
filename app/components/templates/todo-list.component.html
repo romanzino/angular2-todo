@@ -13,10 +13,16 @@
 			(blur)="tryToStopEditingTodo(todoThatIsEdited.value, $event)"
 			(keypress)="tryToStopEditingTodo(todoThatIsEdited.value, $event)" #todoThatIsEdited>
 			
-			<button *ngIf="todoIdThatIsEdited !== index" type="button" class="close" aria-label="Close"
-			(click)="removeTodo(index)">
-				<span aria-hidden="true">&times;</span>
-			</button>
+			<div class="btn-group" *ngIf="todoIdThatIsEdited !== index">
+				<button class="btn btn-success btn-sm"
+				(click)="toggleStateOfTodo(index)"
+				>✔</button>
+				<button type="button" class="btn btn-danger btn-sm" aria-label="Close"
+				(click)="removeTodo(index)">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+				
 		</li>
 	</ul>
 </div>

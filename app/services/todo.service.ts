@@ -12,6 +12,8 @@ export class TodoService {
 		for (let todo of todosFromLocalStorage) {
 			this.todos.push(todo);
 		}
+
+		console.log(this.todos);
 	}
 
 	createTodo(todo: {}) {
@@ -27,6 +29,19 @@ export class TodoService {
 	updateTodo({todoId, todoTitle}) {
 		this.todos[todoId].title = todoTitle;
 		this.saveTodos();
+	}
+
+	toggleStateOfTodo(todoId: number) {
+		let currentTodo = this.todos[todoId];
+
+		if (currentTodo.status === 'started') {
+			currentTodo.status = 'finished';
+		}
+		else {
+			currentTodo.status = 'started';
+		}
+
+		console.log(currentTodo);
 	}
 
 	saveTodos() {

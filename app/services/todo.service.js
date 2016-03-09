@@ -29,6 +29,7 @@ System.register(['../models/todo.model', 'angular2/core'], function(exports_1, c
                         var todo = todosFromLocalStorage_1[_i];
                         this.todos.push(todo);
                     }
+                    console.log(this.todos);
                 }
                 TodoService.prototype.createTodo = function (todo) {
                     this.todos.push(new todo_model_1.TodoModel(todo));
@@ -42,6 +43,16 @@ System.register(['../models/todo.model', 'angular2/core'], function(exports_1, c
                     var todoId = _a.todoId, todoTitle = _a.todoTitle;
                     this.todos[todoId].title = todoTitle;
                     this.saveTodos();
+                };
+                TodoService.prototype.toggleStateOfTodo = function (todoId) {
+                    var currentTodo = this.todos[todoId];
+                    if (currentTodo.status === 'started') {
+                        currentTodo.status = 'finished';
+                    }
+                    else {
+                        currentTodo.status = 'started';
+                    }
+                    console.log(currentTodo);
                 };
                 TodoService.prototype.saveTodos = function () {
                     var data = JSON.stringify(this.todos);

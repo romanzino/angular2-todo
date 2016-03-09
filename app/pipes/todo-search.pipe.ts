@@ -2,7 +2,8 @@ import {Pipe} from 'angular2/core';
 import {TodoModel} from '../models/todo.model';
 
 @Pipe({
-	name: 'todosearch'
+	name: 'todosearch',
+	pure: false
 })
 
 export class TodoSearchPipe {

@@ -32,7 +32,8 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 };
                 TodoSearchPipe = __decorate([
                     core_1.Pipe({
-                        name: 'todosearch'
+                        name: 'todosearch',
+                        pure: false
                     }), 
                     __metadata('design:paramtypes', [])
                 ], TodoSearchPipe);

@@ -7,7 +7,8 @@ import {TodoSearchPipe} from '../pipes/todo-search.pipe';
   selector: 'todo-list',
   directives: [TodoSearchComponent],
   pipes: [TodoSearchPipe],
-  templateUrl: './app/components/templates/todo-list.component.html'
+  templateUrl: './app/components/templates/todo-list.component.html',
+  styleUrls: ['./app/components/todo-list.component.css']
 })
 
 export class TodoListComponent {

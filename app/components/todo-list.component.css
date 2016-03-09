@@ -1,0 +1,12 @@
+.todo {
+	display: flex;
+	align-items: center;
+}
+
+.todo--finished {
+	opacity: .7;
+}
+
+.todo__title {
+	flex-grow: 1;
+}

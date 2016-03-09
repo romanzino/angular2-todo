@@ -66,7 +66,8 @@ System.register(['angular2/core', '../services/todo.service', './todo-search.com
                         selector: 'todo-list',
                         directives: [todo_search_component_1.TodoSearchComponent],
                         pipes: [todo_search_pipe_1.TodoSearchPipe],
-                        templateUrl: './app/components/templates/todo-list.component.html'
+                        templateUrl: './app/components/templates/todo-list.component.html',
+                        styleUrls: ['./app/components/todo-list.component.css']
                     }), 
                     __metadata('design:paramtypes', [todo_service_1.TodoService])
                 ], TodoListComponent);

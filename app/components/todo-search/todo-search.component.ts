@@ -1,6 +1,4 @@
 import {Component, Output, EventEmitter} from 'angular2/core';
-import {TodoService} from '../../services/todo.service';
-
 
 @Component({
   selector: 'todo-search',

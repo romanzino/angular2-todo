@@ -1,31 +1,24 @@
-<div class="well" *ngIf="TodoService.todos.length > 0">
-
-	<h3>List of actuals todos ({{TodoService.todos.length}})</h3>
-
-	<todo-search (searchTermUpdate)="searchTerm = $event"></todo-search>
-
-	<ul class="list-group todos">
-		<li class="list-group-item todo" 
-		*ngFor="#todo of TodoService.todos | todosearch : searchTerm; #index = index"
-		(dblclick)="editTodo(index)"
-		[class.todo--finished]="todo.status === 'finished'">
-			<span class="todo__title" *ngIf="todoIdThatIsEdited !== index">{{todo.title}}</span>
+<ul class="list-group todos">
+	<li class="list-group-item todo" 
+	*ngFor="#todo of TodoService.todos | todosearch : searchTerm; #index = index"
+	(dblclick)="editTodo(index)"
+	[class.todo--finished]="todo.status === 'finished'">
+		<span class="todo__title" *ngIf="todoIdThatIsEdited !== index">{{todo.title}}</span>
+		
+		<input type="text" class="form-control" value="{{todo.title}}" 
+		*ngIf="todoIdThatIsEdited === index"
+		(blur)="tryToStopEditingTodo(todoThatIsEdited.value, $event)"
+		(keypress)="tryToStopEditingTodo(todoThatIsEdited.value, $event)" #todoThatIsEdited>
+		
+		<div class="btn-group" *ngIf="todoIdThatIsEdited !== index">
+			<button class="btn btn-success btn-sm"
+			(click)="toggleStateOfTodo(index)"
+			>✔</button>
+			<button type="button" class="btn btn-danger btn-sm" aria-label="Close"
+			(click)="removeTodo(index)">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
 			
-			<input type="text" class="form-control" value="{{todo.title}}" 
-			*ngIf="todoIdThatIsEdited === index"
-			(blur)="tryToStopEditingTodo(todoThatIsEdited.value, $event)"
-			(keypress)="tryToStopEditingTodo(todoThatIsEdited.value, $event)" #todoThatIsEdited>
-			
-			<div class="btn-group" *ngIf="todoIdThatIsEdited !== index">
-				<button class="btn btn-success btn-sm"
-				(click)="toggleStateOfTodo(index)"
-				>✔</button>
-				<button type="button" class="btn btn-danger btn-sm" aria-label="Close"
-				(click)="removeTodo(index)">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-				
-		</li>
-	</ul>
-</div>
+	</li>
+</ul>

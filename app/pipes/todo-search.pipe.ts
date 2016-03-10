@@ -8,11 +8,14 @@ import {TodoModel} from '../models/todo.model';
 
 export class TodoSearchPipe {
 	transform(value: Array<TodoModel>, [searchTerm]) {
-		value = value.filter((item) => {
-			if (item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) {
-				return true;
-			}
-		});
+
+		if (typeof searchTerm === 'string' && searchTerm.length > 0) {
+			value = value.filter((item) => {
+				if (item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) {
+					return true;
+				}
+			});
+		}
 
 		return value;
 	}

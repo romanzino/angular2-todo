@@ -1,11 +1,9 @@
-import {Component} from 'angular2/core';
+import {Component, Input} from 'angular2/core';
 import {TodoService} from '../../services/todo.service';
-import {TodoSearchComponent} from '../todo-search/todo-search.component';
 import {TodoSearchPipe} from '../../pipes/todo-search.pipe';
 
 @Component({
   selector: 'todo-list',
-  directives: [TodoSearchComponent],
   pipes: [TodoSearchPipe],
   templateUrl: './app/components/todo-list/todo-list.component.html',
   styleUrls: ['./app/components/todo-list/todo-list.component.css']
@@ -13,7 +11,7 @@ import {TodoSearchPipe} from '../../pipes/todo-search.pipe';
 
 export class TodoListComponent {
 	todoIdThatIsEdited: number;
-	searchTerm: string = '';
+	@Input() searchTerm: string;
 
 	constructor(public TodoService: TodoService) {
 

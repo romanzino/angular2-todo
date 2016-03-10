@@ -12,8 +12,6 @@ export class TodoService {
 		for (let todo of todosFromLocalStorage) {
 			this.todos.push(todo);
 		}
-
-		console.log(this.todos);
 	}
 
 	createTodo(todo: {}) {

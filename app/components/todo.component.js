@@ -1,4 +1,4 @@
-System.register(['angular2/core', './todo-add/todo-add.component', './todo-list/todo-list.component'], function(exports_1, context_1) {
+System.register(['angular2/core', './todo-add/todo-add.component', './todo-list/todo-list.component', './todo-search/todo-search.component', '../services/todo.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', './todo-add/todo-add.component', './todo-list/
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, todo_add_component_1, todo_list_component_1;
+    var core_1, todo_add_component_1, todo_list_component_1, todo_search_component_1, todo_service_1;
     var TodoComponent;
     return {
         setters:[
@@ -22,18 +22,25 @@ System.register(['angular2/core', './todo-add/todo-add.component', './todo-list/
             },
             function (todo_list_component_1_1) {
                 todo_list_component_1 = todo_list_component_1_1;
+            },
+            function (todo_search_component_1_1) {
+                todo_search_component_1 = todo_search_component_1_1;
+            },
+            function (todo_service_1_1) {
+                todo_service_1 = todo_service_1_1;
             }],
         execute: function() {
             TodoComponent = (function () {
-                function TodoComponent() {
+                function TodoComponent(TodoService) {
+                    this.TodoService = TodoService;
                 }
                 TodoComponent = __decorate([
                     core_1.Component({
                         selector: 'todo-app',
-                        directives: [todo_add_component_1.TodoAddComponent, todo_list_component_1.TodoListComponent],
+                        directives: [todo_add_component_1.TodoAddComponent, todo_list_component_1.TodoListComponent, todo_search_component_1.TodoSearchComponent],
                         templateUrl: './app/components/todo.component.html'
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [todo_service_1.TodoService])
                 ], TodoComponent);
                 return TodoComponent;
             }());

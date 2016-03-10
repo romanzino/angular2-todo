@@ -23,11 +23,13 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 }
                 TodoSearchPipe.prototype.transform = function (value, _a) {
                     var searchTerm = _a[0];
-                    value = value.filter(function (item) {
-                        if (item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) {
-                            return true;
-                        }
-                    });
+                    if (typeof searchTerm === 'string' && searchTerm.length > 0) {
+                        value = value.filter(function (item) {
+                            if (item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) {
+                                return true;
+                            }
+                        });
+                    }
                     return value;
                 };
                 TodoSearchPipe = __decorate([

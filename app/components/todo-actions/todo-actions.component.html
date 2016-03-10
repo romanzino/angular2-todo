@@ -1,5 +1,17 @@
-<div>
-	<div class="btn-group">
-		<button class="btn btn-default" (click)="markAllTodosAsCompleted()">Mark all as completed</button>
+<div class="actions">
+	<div class="actions__top">
+		<div class="btn-group">
+			<button class="btn btn-default" (click)="markAllTodosAsCompleted()">Mark all as completed</button>
+		</div>
+	</div>
+
+	<div class="actions__bottom">
+		<span>Show todos:</span>
+
+		<div class="btn-group">
+			<a class="btn btn-default">All</a>
+			<a class="btn btn-default">Active</a>
+			<a class="btn btn-default">Completed</a>
+		</div>
 	</div>
 </div>

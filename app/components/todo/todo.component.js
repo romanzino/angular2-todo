@@ -1,4 +1,4 @@
-System.register(['angular2/core', './todo-add/todo-add.component', './todo-list/todo-list.component', './todo-search/todo-search.component', './todo-actions/todo-actions.component', '../services/todo.service'], function(exports_1, context_1) {
+System.register(['angular2/core', '../todo-add/todo-add.component', '../todo-list/todo-list.component', '../todo-search/todo-search.component', '../todo-actions/todo-actions.component', '../../services/todo.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -41,7 +41,7 @@ System.register(['angular2/core', './todo-add/todo-add.component', './todo-list/
                     core_1.Component({
                         selector: 'todo-app',
                         directives: [todo_add_component_1.TodoAddComponent, todo_list_component_1.TodoListComponent, todo_search_component_1.TodoSearchComponent, todo_actions_component_1.TodoActionsComponent],
-                        templateUrl: './app/components/todo.component.html'
+                        templateUrl: './app/components/todo/todo.component.html'
                     }), 
                     __metadata('design:paramtypes', [todo_service_1.TodoService])
                 ], TodoComponent);

@@ -31,7 +31,8 @@ System.register(['angular2/core', '../../services/todo.service'], function(expor
                 TodoActionsComponent = __decorate([
                     core_1.Component({
                         selector: 'todo-actions',
-                        templateUrl: './app/components/todo-actions/todo-actions.component.html'
+                        templateUrl: './app/components/todo-actions/todo-actions.component.html',
+                        styleUrls: ['./app/components/todo-actions/todo-actions.component.css']
                     }), 
                     __metadata('design:paramtypes', [todo_service_1.TodoService])
                 ], TodoActionsComponent);

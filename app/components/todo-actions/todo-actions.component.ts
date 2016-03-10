@@ -3,7 +3,8 @@ import {TodoService} from '../../services/todo.service';
 
 @Component({
 	selector: 'todo-actions',
-	templateUrl: './app/components/todo-actions/todo-actions.component.html'
+	templateUrl: './app/components/todo-actions/todo-actions.component.html',
+	styleUrls: ['./app/components/todo-actions/todo-actions.component.css']
 })
 
 export class TodoActionsComponent {

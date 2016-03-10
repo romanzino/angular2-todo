@@ -4,10 +4,11 @@ import {Injectable} from 'angular2/core';
 @Injectable()
 export class TodoService {
 	todos: Array<TodoModel> = [];
-	static localStorageIndex: string = 'angular2-todo';
+	todosStatus: string[] = ['started', 'completed'];
+	localStorageIndex: string = 'angular2-todo';
 
 	constructor() {
-		let todosFromLocalStorage = JSON.parse(localStorage.getItem(TodoService.localStorageIndex) || '[]');
+		let todosFromLocalStorage = JSON.parse(localStorage.getItem(this.localStorageIndex) || '[]');
 		
 		for (let todo of todosFromLocalStorage) {
 			this.todos.push(todo);
@@ -32,11 +33,21 @@ export class TodoService {
 	toggleStateOfTodo(todoId: number) {
 		let currentTodo = this.todos[todoId];
 
-		if (currentTodo.status === 'started') {
-			currentTodo.status = 'finished';
+		if (currentTodo.status === this.todosStatus[0]) {
+			currentTodo.status = this.todosStatus[1];
 		}
 		else {
-			currentTodo.status = 'started';
+			currentTodo.status = this.todosStatus[0];
+		}
+
+		this.saveTodos();
+	}
+
+	markAllAsCompleted() {
+		for (let todo of this.todos) {
+			if (todo.status === this.todosStatus[0]) {
+				todo.status = this.todosStatus[1];
+			}
 		}
 
 		this.saveTodos();
@@ -44,6 +55,6 @@ export class TodoService {
 
 	saveTodos() {
 		let data = JSON.stringify(this.todos);
-		localStorage.setItem(TodoService.localStorageIndex, data);
+		localStorage.setItem(this.localStorageIndex, data);
 	}
 }

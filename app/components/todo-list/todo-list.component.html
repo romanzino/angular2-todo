@@ -2,9 +2,8 @@
 	<li class="list-group-item todo" 
 	*ngFor="#todo of TodoService.todos | todosearch : searchTerm; #index = index"
 	(dblclick)="editTodo(index)"
-	[class.todo--finished]="todo.status === 'finished'">
+	[class.todo--finished]="todo.status === TodoService.todosStatus[1]">
 		<span class="todo__title" *ngIf="todoIdThatIsEdited !== index">{{todo.title}}</span>
-		
 		<input type="text" class="form-control" value="{{todo.title}}" 
 		*ngIf="todoIdThatIsEdited === index"
 		(blur)="tryToStopEditingTodo(todoThatIsEdited.value, $event)"

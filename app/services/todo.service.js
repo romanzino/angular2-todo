@@ -24,7 +24,9 @@ System.register(['../models/todo.model', 'angular2/core'], function(exports_1, c
             TodoService = (function () {
                 function TodoService() {
                     this.todos = [];
-                    var todosFromLocalStorage = JSON.parse(localStorage.getItem(TodoService.localStorageIndex) || '[]');
+                    this.todosStatus = ['started', 'completed'];
+                    this.localStorageIndex = 'angular2-todo';
+                    var todosFromLocalStorage = JSON.parse(localStorage.getItem(this.localStorageIndex) || '[]');
                     for (var _i = 0, todosFromLocalStorage_1 = todosFromLocalStorage; _i < todosFromLocalStorage_1.length; _i++) {
                         var todo = todosFromLocalStorage_1[_i];
                         this.todos.push(todo);
@@ -45,19 +47,27 @@ System.register(['../models/todo.model', 'angular2/core'], function(exports_1, c
                 };
                 TodoService.prototype.toggleStateOfTodo = function (todoId) {
                     var currentTodo = this.todos[todoId];
-                    if (currentTodo.status === 'started') {
-                        currentTodo.status = 'finished';
+                    if (currentTodo.status === this.todosStatus[0]) {
+                        currentTodo.status = this.todosStatus[1];
                     }
                     else {
-                        currentTodo.status = 'started';
+                        currentTodo.status = this.todosStatus[0];
+                    }
+                    this.saveTodos();
+                };
+                TodoService.prototype.markAllAsCompleted = function () {
+                    for (var _i = 0, _a = this.todos; _i < _a.length; _i++) {
+                        var todo = _a[_i];
+                        if (todo.status === this.todosStatus[0]) {
+                            todo.status = this.todosStatus[1];
+                        }
                     }
                     this.saveTodos();
                 };
                 TodoService.prototype.saveTodos = function () {
                     var data = JSON.stringify(this.todos);
-                    localStorage.setItem(TodoService.localStorageIndex, data);
+                    localStorage.setItem(this.localStorageIndex, data);
                 };
-                TodoService.localStorageIndex = 'angular2-todo';
                 TodoService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [])

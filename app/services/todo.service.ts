@@ -8,15 +8,21 @@ export class TodoService {
 	localStorageIndex: string = 'angular2-todo';
 
 	constructor() {
-		let todosFromLocalStorage = JSON.parse(localStorage.getItem(this.localStorageIndex) || '[]');
+		const todosFromLocalStorage = JSON.parse(localStorage.getItem(this.localStorageIndex) || '[]');
 		
 		for (let todo of todosFromLocalStorage) {
 			this.todos.push(todo);
 		}
 	}
 
-	createTodo(todo: {}) {
-		todo.status = this.todosStatus[0];
+	createTodo(todoOptions: {}) {
+		const todoDefaultOptions: {
+			status: string
+		} = {
+			status: this.todosStatus[0]
+		};
+
+		const todo = Object.assign(todoDefaultOptions, todoOptions);
 
 		this.todos.push(new TodoModel(todo));
 		this.saveTodos();
@@ -54,7 +60,7 @@ export class TodoService {
 	}
 
 	saveTodos() {
-		let data = JSON.stringify(this.todos);
+		const data = JSON.stringify(this.todos);
 		localStorage.setItem(this.localStorageIndex, data);
 	}
 

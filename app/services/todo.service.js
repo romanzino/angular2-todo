@@ -32,8 +32,11 @@ System.register(['../models/todo.model', 'angular2/core'], function(exports_1, c
                         this.todos.push(todo);
                     }
                 }
-                TodoService.prototype.createTodo = function (todo) {
-                    todo.status = this.todosStatus[0];
+                TodoService.prototype.createTodo = function (todoOptions) {
+                    var todoDefaultOptions = {
+                        status: this.todosStatus[0]
+                    };
+                    var todo = Object.assign(todoDefaultOptions, todoOptions);
                     this.todos.push(new todo_model_1.TodoModel(todo));
                     this.saveTodos();
                 };

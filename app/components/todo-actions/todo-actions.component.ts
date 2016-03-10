@@ -11,7 +11,7 @@ export class TodoActionsComponent {
 
 	}
 
-	markAllAsCompleted() {
-		this.TodoService.markAllAsCompleted();
+	markAllTodosAsCompleted() {
+		this.TodoService.markAllTodosAsCompleted();
 	}
 }

@@ -25,8 +25,8 @@ System.register(['angular2/core', '../../services/todo.service'], function(expor
                 function TodoActionsComponent(TodoService) {
                     this.TodoService = TodoService;
                 }
-                TodoActionsComponent.prototype.markAllAsCompleted = function () {
-                    this.TodoService.markAllAsCompleted();
+                TodoActionsComponent.prototype.markAllTodosAsCompleted = function () {
+                    this.TodoService.markAllTodosAsCompleted();
                 };
                 TodoActionsComponent = __decorate([
                     core_1.Component({

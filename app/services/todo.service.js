@@ -55,7 +55,7 @@ System.register(['../models/todo.model', 'angular2/core'], function(exports_1, c
                     }
                     this.saveTodos();
                 };
-                TodoService.prototype.markAllAsCompleted = function () {
+                TodoService.prototype.markAllTodosAsCompleted = function () {
                     for (var _i = 0, _a = this.todos; _i < _a.length; _i++) {
                         var todo = _a[_i];
                         if (todo.status === this.todosStatus[0]) {

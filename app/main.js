@@ -44,7 +44,7 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/router'
                     }),
                     router_1.RouteConfig([
                         {
-                            path: '/todos',
+                            path: '/todos/',
                             name: 'Todos',
                             component: todo_component_1.TodoComponent,
                             useAsDefault: true
@@ -53,7 +53,7 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/router'
                             path: '/about',
                             name: 'About',
                             component: about_component_1.AboutComponent
-                        }
+                        },
                     ]), 
                     __metadata('design:paramtypes', [])
                 ], Main);

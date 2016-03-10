@@ -1,6 +1,6 @@
 <ul class="list-group todos">
 	<li class="list-group-item todo" 
-	*ngFor="#todo of TodoService.todos | todosearch : searchTerm;"
+	*ngFor="#todo of TodoService.todos | todosearch : searchTerm:todoStatus;"
 	(dblclick)="editTodo(todo)"
 	[class.todo--finished]="todo.status === TodoService.todosStatus[1]">
 		<span class="todo__title" *ngIf="todoThatIsEdited !== todo">{{todo.title}}</span>
@@ -18,6 +18,5 @@
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
-			
 	</li>
 </ul>

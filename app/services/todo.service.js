@@ -24,7 +24,7 @@ System.register(['../models/todo.model', 'angular2/core'], function(exports_1, c
             TodoService = (function () {
                 function TodoService() {
                     this.todos = [];
-                    this.todosStatus = ['started', 'completed'];
+                    this.todosStatus = ['active', 'completed'];
                     this.localStorageIndex = 'angular2-todo';
                     var todosFromLocalStorage = JSON.parse(localStorage.getItem(this.localStorageIndex) || '[]');
                     for (var _i = 0, todosFromLocalStorage_1 = todosFromLocalStorage; _i < todosFromLocalStorage_1.length; _i++) {
@@ -33,6 +33,7 @@ System.register(['../models/todo.model', 'angular2/core'], function(exports_1, c
                     }
                 }
                 TodoService.prototype.createTodo = function (todo) {
+                    todo.status = this.todosStatus[0];
                     this.todos.push(new todo_model_1.TodoModel(todo));
                     this.saveTodos();
                 };

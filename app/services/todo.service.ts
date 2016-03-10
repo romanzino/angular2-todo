@@ -4,7 +4,7 @@ import {Injectable} from 'angular2/core';
 @Injectable()
 export class TodoService {
 	todos: Array<TodoModel> = [];
-	todosStatus: string[] = ['started', 'completed'];
+	todosStatus: string[] = ['active', 'completed'];
 	localStorageIndex: string = 'angular2-todo';
 
 	constructor() {
@@ -16,6 +16,8 @@ export class TodoService {
 	}
 
 	createTodo(todo: {}) {
+		todo.status = this.todosStatus[0];
+
 		this.todos.push(new TodoModel(todo));
 		this.saveTodos();
 	}

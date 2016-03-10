@@ -9,9 +9,9 @@
 		<span>Show todos:</span>
 
 		<div class="btn-group">
-			<a class="btn btn-default">All</a>
-			<a class="btn btn-default">Active</a>
-			<a class="btn btn-default">Completed</a>
+			<a [routerLink]="['Todos']" class="btn btn-default">All</a>
+			<a [routerLink]="['Todos', {todoStatus: 'active'}]" class="btn btn-default">Active</a>
+			<a [routerLink]="['Todos', {todoStatus: 'completed'}]" class="btn btn-default">Completed</a>
 		</div>
 	</div>
 </div>

@@ -22,14 +22,16 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 function TodoSearchPipe() {
                 }
                 TodoSearchPipe.prototype.transform = function (value, _a) {
-                    var searchTerm = _a[0];
-                    if (typeof searchTerm === 'string' && searchTerm.length > 0) {
-                        value = value.filter(function (item) {
-                            if (item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) {
-                                return true;
-                            }
-                        });
+                    var searchTerm = _a[0], todoStatus = _a[1];
+                    if (!searchTerm) {
+                        searchTerm = '';
                     }
+                    value = value.filter(function (item) {
+                        if ((item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1)
+                            && (item.status === todoStatus || !todoStatus)) {
+                            return true;
+                        }
+                    });
                     return value;
                 };
                 TodoSearchPipe = __decorate([

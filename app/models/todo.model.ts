@@ -2,7 +2,7 @@ export class TodoModel {
   status: string;
   title: string;
 
-  constructor({title = '', status = 'started'} = {}) {
+  constructor({title = undefined, status = undefined} = {}) {
   	this.title = title;
   	this.status = status;
   }

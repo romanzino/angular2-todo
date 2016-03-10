@@ -7,15 +7,17 @@ import {TodoModel} from '../models/todo.model';
 })
 
 export class TodoSearchPipe {
-	transform(value: Array<TodoModel>, [searchTerm]) {
-
-		if (typeof searchTerm === 'string' && searchTerm.length > 0) {
-			value = value.filter((item) => {
-				if (item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) {
-					return true;
-				}
-			});
+	transform(value: Array<TodoModel>, [searchTerm, todoStatus]) {
+		if (!searchTerm) {
+			searchTerm = '';
 		}
+
+		value = value.filter((item) => {
+			if ((item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1)
+				&& (item.status === todoStatus || !todoStatus)) {
+				return true;
+			}
+		});
 
 		return value;
 	}

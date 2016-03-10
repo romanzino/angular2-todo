@@ -2,6 +2,7 @@ import {Component, Input} from 'angular2/core';
 import {TodoService} from '../../services/todo.service';
 import {TodoSearchPipe} from '../../pipes/todo-search.pipe';
 import {TodoModel} from '../../models/todo.model';
+import {Router, RouteParams} from 'angular2/router';
 
 @Component({
   selector: 'todo-list',
@@ -12,10 +13,11 @@ import {TodoModel} from '../../models/todo.model';
 
 export class TodoListComponent {
 	todoThatIsEdited: TodoModel;
+	filter: string;
 	@Input() searchTerm: string;
 
-	constructor(public TodoService: TodoService) {
-
+	constructor(public TodoService: TodoService, private router: Router, routeParams: RouteParams) {
+		this.todoStatus = routeParams.get('todoStatus');
 	}
 
 	removeTodo(todo: TodoModel) {

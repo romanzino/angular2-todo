@@ -13,7 +13,7 @@ import {AboutComponent} from './components/about/about.component';
 
 @RouteConfig([
 	{
-		path: '/todos',
+		path: '/todos/',
 		name: 'Todos',
 		component: TodoComponent,
 		useAsDefault: true
@@ -22,7 +22,7 @@ import {AboutComponent} from './components/about/about.component';
 		path: '/about',
 		name: 'About',
 		component: AboutComponent
-	}
+	},
 ])
 
 class Main {

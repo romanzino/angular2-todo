@@ -1,20 +1,20 @@
 <ul class="list-group todos">
 	<li class="list-group-item todo" 
-	*ngFor="#todo of TodoService.todos | todosearch : searchTerm; #index = index"
-	(dblclick)="editTodo(index)"
+	*ngFor="#todo of TodoService.todos | todosearch : searchTerm;"
+	(dblclick)="editTodo(todo)"
 	[class.todo--finished]="todo.status === TodoService.todosStatus[1]">
-		<span class="todo__title" *ngIf="todoIdThatIsEdited !== index">{{todo.title}}</span>
+		<span class="todo__title" *ngIf="todoThatIsEdited !== todo">{{todo.title}}</span>
 		<input type="text" class="form-control" value="{{todo.title}}" 
-		*ngIf="todoIdThatIsEdited === index"
+		*ngIf="todoThatIsEdited === todo"
 		(blur)="tryToStopEditingTodo(todoThatIsEdited.value, $event)"
 		(keypress)="tryToStopEditingTodo(todoThatIsEdited.value, $event)" #todoThatIsEdited>
 		
-		<div class="btn-group" *ngIf="todoIdThatIsEdited !== index">
+		<div class="btn-group" *ngIf="todoThatIsEdited !== todo">
 			<button class="btn btn-success btn-sm"
-			(click)="toggleStateOfTodo(index)"
+			(click)="toggleStateOfTodo(todo)"
 			>✔</button>
 			<button type="button" class="btn btn-danger btn-sm" aria-label="Close"
-			(click)="removeTodo(index)">
+			(click)="removeTodo(todo)">
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>

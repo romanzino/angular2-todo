@@ -36,22 +36,21 @@ System.register(['../models/todo.model', 'angular2/core'], function(exports_1, c
                     this.todos.push(new todo_model_1.TodoModel(todo));
                     this.saveTodos();
                 };
-                TodoService.prototype.removeTodo = function (index) {
-                    this.todos.splice(index, 1);
+                TodoService.prototype.removeTodo = function (todo) {
+                    this.todos.splice(this.findIndexOfTodo(todo), 1);
                     this.saveTodos();
                 };
                 TodoService.prototype.updateTodo = function (_a) {
-                    var todoId = _a.todoId, todoTitle = _a.todoTitle;
-                    this.todos[todoId].title = todoTitle;
+                    var todo = _a.todo, todoTitle = _a.todoTitle;
+                    this.findTodo(todo).title = todoTitle;
                     this.saveTodos();
                 };
-                TodoService.prototype.toggleStateOfTodo = function (todoId) {
-                    var currentTodo = this.todos[todoId];
-                    if (currentTodo.status === this.todosStatus[0]) {
-                        currentTodo.status = this.todosStatus[1];
+                TodoService.prototype.toggleStateOfTodo = function (todo) {
+                    if (todo.status === this.todosStatus[0]) {
+                        todo.status = this.todosStatus[1];
                     }
                     else {
-                        currentTodo.status = this.todosStatus[0];
+                        todo.status = this.todosStatus[0];
                     }
                     this.saveTodos();
                 };
@@ -67,6 +66,12 @@ System.register(['../models/todo.model', 'angular2/core'], function(exports_1, c
                 TodoService.prototype.saveTodos = function () {
                     var data = JSON.stringify(this.todos);
                     localStorage.setItem(this.localStorageIndex, data);
+                };
+                TodoService.prototype.findTodo = function (todo) {
+                    return this.todos[this.todos.indexOf(todo)];
+                };
+                TodoService.prototype.findIndexOfTodo = function (todo) {
+                    return this.todos.indexOf(todo);
                 };
                 TodoService = __decorate([
                     core_1.Injectable(), 

@@ -1,6 +1,7 @@
 import {Component, Input} from 'angular2/core';
 import {TodoService} from '../../services/todo.service';
 import {TodoSearchPipe} from '../../pipes/todo-search.pipe';
+import {TodoModel} from '../../models/todo.model';
 
 @Component({
   selector: 'todo-list',
@@ -10,23 +11,23 @@ import {TodoSearchPipe} from '../../pipes/todo-search.pipe';
 })
 
 export class TodoListComponent {
-	todoIdThatIsEdited: number;
+	todoThatIsEdited: TodoModel;
 	@Input() searchTerm: string;
 
 	constructor(public TodoService: TodoService) {
 
 	}
 
-	removeTodo(todoId: number) {
-		this.TodoService.removeTodo(todoId);
+	removeTodo(todo: TodoModel) {
+		this.TodoService.removeTodo(todo);
 	}
 
-	editTodo(todoId: number) {
-		this.todoIdThatIsEdited = todoId;
+	editTodo(todo: TodoModel) {
+		this.todoThatIsEdited = todo;
 	}
 
-	toggleStateOfTodo(todoId: number) {
-		this.TodoService.toggleStateOfTodo(todoId);
+	toggleStateOfTodo(todo: TodoModel) {
+		this.TodoService.toggleStateOfTodo(todo);
 	}
 
 	tryToStopEditingTodo(todoTitle: string, event: Event) {
@@ -37,7 +38,7 @@ export class TodoListComponent {
 			}
 		}
 		else if (event.type === 'blur') {
-			if (this.todoIdThatIsEdited > -1) {
+			if (this.todoThatIsEdited) {
 				this.stopEditingTodo(todoTitle);	
 			}
 		}
@@ -45,10 +46,10 @@ export class TodoListComponent {
 
 	stopEditingTodo(todoTitle: string) {
 		this.TodoService.updateTodo({
-			todoId: this.todoIdThatIsEdited,
+			todo: this.todoThatIsEdited,
 			todoTitle: todoTitle
 		});
 
-		this.todoIdThatIsEdited = -1;
+		this.todoThatIsEdited = undefined;
 	}
 }

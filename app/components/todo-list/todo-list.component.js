@@ -28,14 +28,14 @@ System.register(['angular2/core', '../../services/todo.service', '../../pipes/to
                 function TodoListComponent(TodoService) {
                     this.TodoService = TodoService;
                 }
-                TodoListComponent.prototype.removeTodo = function (todoId) {
-                    this.TodoService.removeTodo(todoId);
+                TodoListComponent.prototype.removeTodo = function (todo) {
+                    this.TodoService.removeTodo(todo);
                 };
-                TodoListComponent.prototype.editTodo = function (todoId) {
-                    this.todoIdThatIsEdited = todoId;
+                TodoListComponent.prototype.editTodo = function (todo) {
+                    this.todoThatIsEdited = todo;
                 };
-                TodoListComponent.prototype.toggleStateOfTodo = function (todoId) {
-                    this.TodoService.toggleStateOfTodo(todoId);
+                TodoListComponent.prototype.toggleStateOfTodo = function (todo) {
+                    this.TodoService.toggleStateOfTodo(todo);
                 };
                 TodoListComponent.prototype.tryToStopEditingTodo = function (todoTitle, event) {
                     if (event.type === 'keypress') {
@@ -45,17 +45,17 @@ System.register(['angular2/core', '../../services/todo.service', '../../pipes/to
                         }
                     }
                     else if (event.type === 'blur') {
-                        if (this.todoIdThatIsEdited > -1) {
+                        if (this.todoThatIsEdited) {
                             this.stopEditingTodo(todoTitle);
                         }
                     }
                 };
                 TodoListComponent.prototype.stopEditingTodo = function (todoTitle) {
                     this.TodoService.updateTodo({
-                        todoId: this.todoIdThatIsEdited,
+                        todo: this.todoThatIsEdited,
                         todoTitle: todoTitle
                     });
-                    this.todoIdThatIsEdited = -1;
+                    this.todoThatIsEdited = undefined;
                 };
                 __decorate([
                     core_1.Input(), 

@@ -20,24 +20,22 @@ export class TodoService {
 		this.saveTodos();
 	}
 
-	removeTodo(index: number) {
-		this.todos.splice(index, 1);
+	removeTodo(todo: TodoModel) {
+		this.todos.splice(this.findIndexOfTodo(todo), 1);
 		this.saveTodos();
 	}
 
-	updateTodo({todoId, todoTitle}) {
-		this.todos[todoId].title = todoTitle;
+	updateTodo({todo, todoTitle}) {
+		this.findTodo(todo).title = todoTitle;
 		this.saveTodos();
 	}
 
-	toggleStateOfTodo(todoId: number) {
-		let currentTodo = this.todos[todoId];
-
-		if (currentTodo.status === this.todosStatus[0]) {
-			currentTodo.status = this.todosStatus[1];
+	toggleStateOfTodo(todo: TodoModel) {
+		if (todo.status === this.todosStatus[0]) {
+			todo.status = this.todosStatus[1];
 		}
 		else {
-			currentTodo.status = this.todosStatus[0];
+			todo.status = this.todosStatus[0];
 		}
 
 		this.saveTodos();
@@ -56,5 +54,13 @@ export class TodoService {
 	saveTodos() {
 		let data = JSON.stringify(this.todos);
 		localStorage.setItem(this.localStorageIndex, data);
+	}
+
+	private findTodo(todo: TodoModel): TodoModel {
+		return this.todos[this.todos.indexOf(todo)];
+	}
+
+	private findIndexOfTodo(todo: TodoModel): number {
+		return this.todos.indexOf(todo);
 	}
 }

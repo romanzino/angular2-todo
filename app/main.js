@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/platform/browser', 'angular2/router', './services/todo.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/platform/browser', 'angular2/router', './components/todo/todo.component', './services/todo.service', './components/about/about.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/router'
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, browser_1, router_1, todo_service_1;
+    var core_1, browser_1, router_1, todo_component_1, todo_service_1, about_component_1;
     var Main;
     return {
         setters:[
@@ -23,8 +23,14 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/router'
             function (router_1_1) {
                 router_1 = router_1_1;
             },
+            function (todo_component_1_1) {
+                todo_component_1 = todo_component_1_1;
+            },
             function (todo_service_1_1) {
                 todo_service_1 = todo_service_1_1;
+            },
+            function (about_component_1_1) {
+                about_component_1 = about_component_1_1;
             }],
         execute: function() {
             Main = (function () {
@@ -33,8 +39,22 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/router'
                 Main = __decorate([
                     core_1.Component({
                         selector: 'app-main',
-                        templateUrl: './app/main.html'
-                    }), 
+                        templateUrl: './app/main.html',
+                        directives: [router_1.ROUTER_DIRECTIVES]
+                    }),
+                    router_1.RouteConfig([
+                        {
+                            path: '/todos',
+                            name: 'Todos',
+                            component: todo_component_1.TodoComponent,
+                            useAsDefault: true
+                        },
+                        {
+                            path: '/about',
+                            name: 'About',
+                            component: about_component_1.AboutComponent
+                        }
+                    ]), 
                     __metadata('design:paramtypes', [])
                 ], Main);
                 return Main;

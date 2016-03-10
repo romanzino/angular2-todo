@@ -5,14 +5,16 @@
 	</div>
 
 	<div class="navbar-default">
-		<ul class="nav navbar-nav">
-			<li>
-				<a href="#">Main</a>
-			</li>
-			<li>
-				<a href="#">About</a>
-			</li>
-		</ul>
+		<div class="container-fluid">
+			<ul class="nav navbar-nav">
+				<li>
+					<a [routerLink]="['Todos']">Main</a>
+				</li>
+				<li>
+					<a [routerLink]="['About']">About</a>
+				</li>
+			</ul>
+		</div>
 	</div>
 
 	<router-outlet></router-outlet>

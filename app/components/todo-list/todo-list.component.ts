@@ -4,7 +4,6 @@ import {Component,
 	OnInit, OnChanges, SimpleChange} from 'angular2/core';
 import {TodoService} from '../../services/todo.service';
 import {TodoModel} from '../../models/todo.model';
-import {Router, RouteParams} from 'angular2/router';
 
 @Component({
   selector: 'todo-list',
@@ -16,19 +15,17 @@ export class TodoListComponent implements OnInit, OnChanges {
 	todos: Array<TodoModel> = [];
 	todosCount: number;
 	todoThatIsEdited: TodoModel;
-	todosStatus: string;
+	@Input() filterByTodosStatus: string|{};
 	@Input() searchTerm: string = '';
 	@Output() todosCountUpdate: EventEmitter<any> = new EventEmitter();
 
-	constructor(private TodoService: TodoService, private router: Router, private routeParams: RouteParams) {
-		this.todosStatus = routeParams.get('todoStatus');
-
-		this.filterTodosByStatus();
-		this.todosCount = this.todos.length;
+	constructor(private TodoService: TodoService) {
+		
 	}
 
 	ngOnInit() {
-		this.todosCountUpdate.emit(this.todosCount);
+		this.filterTodosByStatus();
+		this.afterFilteringTodos();
 	}
 
 	ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
@@ -79,9 +76,9 @@ export class TodoListComponent implements OnInit, OnChanges {
 	}
 
 	private filterTodosByStatus(): Array<TodoModel> {
-		if (typeof this.todosStatus === 'string') {
+		if (typeof this.filterByTodosStatus === 'string') {
 			return this.todos = this.TodoService.todos.filter((item) => {
-				if (item.status === this.todosStatus) {
+				if (item.status === this.filterByTodosStatus) {
 					return true;
 				}
 			});

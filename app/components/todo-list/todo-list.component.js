@@ -1,4 +1,4 @@
-System.register(['angular2/core', '../../services/todo.service', 'angular2/router'], function(exports_1, context_1) {
+System.register(['angular2/core', '../../services/todo.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', '../../services/todo.service', 'angular2/route
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, todo_service_1, router_1;
+    var core_1, todo_service_1;
     var TodoListComponent;
     return {
         setters:[
@@ -19,25 +19,18 @@ System.register(['angular2/core', '../../services/todo.service', 'angular2/route
             },
             function (todo_service_1_1) {
                 todo_service_1 = todo_service_1_1;
-            },
-            function (router_1_1) {
-                router_1 = router_1_1;
             }],
         execute: function() {
             TodoListComponent = (function () {
-                function TodoListComponent(TodoService, router, routeParams) {
+                function TodoListComponent(TodoService) {
                     this.TodoService = TodoService;
-                    this.router = router;
-                    this.routeParams = routeParams;
                     this.todos = [];
                     this.searchTerm = '';
                     this.todosCountUpdate = new core_1.EventEmitter();
-                    this.todosStatus = routeParams.get('todoStatus');
-                    this.filterTodosByStatus();
-                    this.todosCount = this.todos.length;
                 }
                 TodoListComponent.prototype.ngOnInit = function () {
-                    this.todosCountUpdate.emit(this.todosCount);
+                    this.filterTodosByStatus();
+                    this.afterFilteringTodos();
                 };
                 TodoListComponent.prototype.ngOnChanges = function (changes) {
                     if (changes['searchTerm']) {
@@ -80,9 +73,9 @@ System.register(['angular2/core', '../../services/todo.service', 'angular2/route
                 };
                 TodoListComponent.prototype.filterTodosByStatus = function () {
                     var _this = this;
-                    if (typeof this.todosStatus === 'string') {
+                    if (typeof this.filterByTodosStatus === 'string') {
                         return this.todos = this.TodoService.todos.filter(function (item) {
-                            if (item.status === _this.todosStatus) {
+                            if (item.status === _this.filterByTodosStatus) {
                                 return true;
                             }
                         });
@@ -103,6 +96,10 @@ System.register(['angular2/core', '../../services/todo.service', 'angular2/route
                 };
                 __decorate([
                     core_1.Input(), 
+                    __metadata('design:type', Object)
+                ], TodoListComponent.prototype, "filterByTodosStatus", void 0);
+                __decorate([
+                    core_1.Input(), 
                     __metadata('design:type', String)
                 ], TodoListComponent.prototype, "searchTerm", void 0);
                 __decorate([
@@ -115,7 +112,7 @@ System.register(['angular2/core', '../../services/todo.service', 'angular2/route
                         templateUrl: './app/components/todo-list/todo-list.component.html',
                         styleUrls: ['./app/components/todo-list/todo-list.component.css']
                     }), 
-                    __metadata('design:paramtypes', [todo_service_1.TodoService, router_1.Router, router_1.RouteParams])
+                    __metadata('design:paramtypes', [todo_service_1.TodoService])
                 ], TodoListComponent);
                 return TodoListComponent;
             }());

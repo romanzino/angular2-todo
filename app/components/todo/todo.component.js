@@ -1,4 +1,4 @@
-System.register(['angular2/core', '../todo-add/todo-add.component', '../todo-list/todo-list.component', '../todo-search/todo-search.component', '../todo-actions/todo-actions.component', '../../services/todo.service'], function(exports_1, context_1) {
+System.register(['angular2/core', '../todo-add/todo-add.component', '../todo-list/todo-list.component', '../todo-search/todo-search.component', '../todo-actions/todo-actions.component', 'angular2/router'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', '../todo-add/todo-add.component', '../todo-lis
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, todo_add_component_1, todo_list_component_1, todo_search_component_1, todo_actions_component_1, todo_service_1;
+    var core_1, todo_add_component_1, todo_list_component_1, todo_search_component_1, todo_actions_component_1, router_1;
     var TodoComponent;
     return {
         setters:[
@@ -29,13 +29,15 @@ System.register(['angular2/core', '../todo-add/todo-add.component', '../todo-lis
             function (todo_actions_component_1_1) {
                 todo_actions_component_1 = todo_actions_component_1_1;
             },
-            function (todo_service_1_1) {
-                todo_service_1 = todo_service_1_1;
+            function (router_1_1) {
+                router_1 = router_1_1;
             }],
         execute: function() {
             TodoComponent = (function () {
-                function TodoComponent(TodoService) {
-                    this.TodoService = TodoService;
+                function TodoComponent(router, routeParams) {
+                    this.router = router;
+                    this.routeParams = routeParams;
+                    this.filterByTodosStatus = routeParams.get('todoStatus');
                 }
                 TodoComponent = __decorate([
                     core_1.Component({
@@ -43,7 +45,7 @@ System.register(['angular2/core', '../todo-add/todo-add.component', '../todo-lis
                         directives: [todo_add_component_1.TodoAddComponent, todo_list_component_1.TodoListComponent, todo_search_component_1.TodoSearchComponent, todo_actions_component_1.TodoActionsComponent],
                         templateUrl: './app/components/todo/todo.component.html'
                     }), 
-                    __metadata('design:paramtypes', [todo_service_1.TodoService])
+                    __metadata('design:paramtypes', [router_1.Router, router_1.RouteParams])
                 ], TodoComponent);
                 return TodoComponent;
             }());

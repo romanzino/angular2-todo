@@ -4,6 +4,7 @@ import {TodoListComponent} from '../todo-list/todo-list.component';
 import {TodoSearchComponent} from '../todo-search/todo-search.component';
 import {TodoActionsComponent} from '../todo-actions/todo-actions.component';
 import {TodoService} from  '../../services/todo.service';
+import {Router, RouteParams} from 'angular2/router';
 
 @Component({
   selector: 'todo-app',
@@ -12,7 +13,10 @@ import {TodoService} from  '../../services/todo.service';
 })
 
 export class TodoComponent {
-	constructor(public TodoService: TodoService) {
+	filterByTodosStatus: string|{};
 
+	constructor(private router: Router, private routeParams: RouteParams) {
+		this.filterByTodosStatus = routeParams.get('todoStatus');
 	}
 }
+

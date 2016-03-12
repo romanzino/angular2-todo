@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, Input} from 'angular2/core';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 import {TodoService} from '../../services/todo.service';
 
@@ -10,6 +10,7 @@ import {TodoService} from '../../services/todo.service';
 })
 
 export class TodoActionsComponent{
+	@Input() todosCount;
 	
 	constructor(public TodoService: TodoService) {
 		

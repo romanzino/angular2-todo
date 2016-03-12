@@ -10,5 +10,5 @@
 		(todosCountUpdate)="todosCount = $event"
 		[searchTerm]="searchTerm"></todo-list>
 
-	<todo-actions></todo-actions>
+	<todo-actions [todosCount]="todosCount"></todo-actions>
 </div>

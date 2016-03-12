@@ -31,6 +31,10 @@ System.register(['angular2/core', 'angular2/router', '../../services/todo.servic
                 TodoActionsComponent.prototype.markAllTodosAsCompleted = function () {
                     this.TodoService.markAllTodosAsCompleted();
                 };
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Object)
+                ], TodoActionsComponent.prototype, "todosCount", void 0);
                 TodoActionsComponent = __decorate([
                     core_1.Component({
                         selector: 'todo-actions',

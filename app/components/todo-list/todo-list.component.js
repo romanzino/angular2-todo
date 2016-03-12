@@ -33,12 +33,7 @@ System.register(['angular2/core', '../../services/todo.service', 'angular2/route
                     this.searchTerm = '';
                     this.todosCountUpdate = new core_1.EventEmitter();
                     this.todosStatus = routeParams.get('todoStatus');
-                    if (typeof this.todosStatus === 'string') {
-                        this.filterTodosByStatus();
-                    }
-                    else {
-                        this.todos = this.TodoService.todos;
-                    }
+                    this.filterTodosByStatus();
                     this.todosCount = this.todos.length;
                 }
                 TodoListComponent.prototype.ngOnInit = function () {
@@ -85,11 +80,14 @@ System.register(['angular2/core', '../../services/todo.service', 'angular2/route
                 };
                 TodoListComponent.prototype.filterTodosByStatus = function () {
                     var _this = this;
-                    return this.todos = this.TodoService.todos.filter(function (item) {
-                        if (item.status === _this.todosStatus) {
-                            return true;
-                        }
-                    });
+                    if (typeof this.todosStatus === 'string') {
+                        return this.todos = this.TodoService.todos.filter(function (item) {
+                            if (item.status === _this.todosStatus) {
+                                return true;
+                            }
+                        });
+                    }
+                    return this.todos = this.TodoService.todos;
                 };
                 TodoListComponent.prototype.filterTodosBySearchTerm = function () {
                     var _this = this;

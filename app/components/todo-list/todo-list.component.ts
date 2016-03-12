@@ -23,13 +23,7 @@ export class TodoListComponent implements OnInit, OnChanges {
 	constructor(private TodoService: TodoService, private router: Router, private routeParams: RouteParams) {
 		this.todosStatus = routeParams.get('todoStatus');
 
-		if (typeof this.todosStatus === 'string') {
-			this.filterTodosByStatus();
-		}
-		else {
-			this.todos = this.TodoService.todos;
-		}
-
+		this.filterTodosByStatus();
 		this.todosCount = this.todos.length;
 	}
 
@@ -85,11 +79,14 @@ export class TodoListComponent implements OnInit, OnChanges {
 	}
 
 	private filterTodosByStatus(): Array<TodoModel> {
-		return this.todos = this.TodoService.todos.filter((item) => {
-			if (item.status === this.todosStatus) {
-				return true;
-			}
-		});
+		if (typeof this.todosStatus === 'string') {
+			return this.todos = this.TodoService.todos.filter((item) => {
+				if (item.status === this.todosStatus) {
+					return true;
+				}
+			});
+		}
+		return this.todos = this.TodoService.todos;
 	}
 
 	private filterTodosBySearchTerm(): Array<TodoModel> {

@@ -1,6 +1,6 @@
 <ul class="list-group todos">
 	<li class="list-group-item todo" 
-	*ngFor="#todo of TodoService.todos | todosearch : searchTerm:todoStatus;"
+	*ngFor="#todo of todos"
 	(dblclick)="editTodo(todo)"
 	[class.todo--finished]="todo.status === TodoService.todosStatus[1]">
 		<span class="todo__title" *ngIf="todoThatIsEdited !== todo">{{todo.title}}</span>

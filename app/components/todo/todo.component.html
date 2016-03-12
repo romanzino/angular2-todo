@@ -1,10 +1,14 @@
 <todo-add></todo-add>
 
-<div class="well" *ngIf="TodoService.todos.length > 0">
-<h3>List of todos ({{TodoService.todos.length}})</h3>
+<div class="well">
+	<h3>List of todos ({{todosCount}})</h3>
 
-<todo-search (searchTermUpdate)="searchTerm = $event"></todo-search>
-<todo-list [searchTerm]="searchTerm"></todo-list>
+	<todo-search 
+		(searchTermUpdate)="searchTerm = $event"></todo-search>
 
-<todo-actions></todo-actions>
+	<todo-list 
+		(todosCountUpdate)="todosCount = $event"
+		[searchTerm]="searchTerm"></todo-list>
+
+	<todo-actions></todo-actions>
 </div>

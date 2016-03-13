@@ -6,5 +6,5 @@ import {Component, Output, EventEmitter} from 'angular2/core';
 })
 
 export class TodoSearchComponent {
-	@Output() searchTermUpdate: EventEmitter<any> = new EventEmitter();
+	@Output() filterValueTodoTitleUpdate: EventEmitter<any> = new EventEmitter();
 }

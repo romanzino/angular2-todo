@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-sm-9 col-md-10">
 			<div class="form-group">
-				<input type="text" class="form-control" required placeholder="Search todo in list" ngControl="todoSearchTermInput" #todoSearchTermInput (input)="searchTermUpdate.emit(todoSearchTermInput.value)">
+				<input type="text" class="form-control" required placeholder="Search todo in list" ngControl="todoSearchTermInput" #todoSearchTermInput (input)="filterValueTodoTitleUpdate.emit(todoSearchTermInput.value)">
 			</div>
 		</div>
 		<div class="col-sm-3 col-md-2">

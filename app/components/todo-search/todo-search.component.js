@@ -20,12 +20,12 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         execute: function() {
             TodoSearchComponent = (function () {
                 function TodoSearchComponent() {
-                    this.searchTermUpdate = new core_1.EventEmitter();
+                    this.filterValueTodoTitleUpdate = new core_1.EventEmitter();
                 }
                 __decorate([
                     core_1.Output(), 
                     __metadata('design:type', core_1.EventEmitter)
-                ], TodoSearchComponent.prototype, "searchTermUpdate", void 0);
+                ], TodoSearchComponent.prototype, "filterValueTodoTitleUpdate", void 0);
                 TodoSearchComponent = __decorate([
                     core_1.Component({
                         selector: 'todo-search',

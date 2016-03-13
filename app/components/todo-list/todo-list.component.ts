@@ -13,7 +13,7 @@ export class TodoListComponent implements OnChanges {
 	todosCount: number;
 	todoThatIsEdited: TodoModel;
 	@Input() filterValueTodosStatus: string|{};
-	@Input() searchTerm: string = '';
+	@Input() filterValueTodoTitle: string = '';
 	@Input() onMarkAllTodosAs: symbol;
 	@Input() onAddTodo: symbol;
 	@Output() todosCountUpdate: EventEmitter<any> = new EventEmitter();
@@ -24,8 +24,8 @@ export class TodoListComponent implements OnChanges {
 	}
 
 	ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
-		if (changes['searchTerm']) {
-			if (typeof this.searchTerm === 'string') {
+		if (changes['filterValueTodoTitle']) {
+			if (typeof this.filterValueTodoTitle === 'string') {
 				this.filterTodosBySearchTerm();
 			}
 		}
@@ -93,7 +93,7 @@ export class TodoListComponent implements OnChanges {
 
 	private filterTodosBySearchTerm(): Array<TodoModel> {
 		return this.todos = this.TodoService.todos.filter((item) => {
-			if (item.title.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1) {
+			if (item.title.toLowerCase().indexOf(this.filterValueTodoTitle.toLowerCase()) > -1) {
 				return true;
 			}
 		});

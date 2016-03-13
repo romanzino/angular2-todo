@@ -25,13 +25,13 @@ System.register(['angular2/core', '../../services/todo.service'], function(expor
                 function TodoListComponent(TodoService) {
                     this.TodoService = TodoService;
                     this.todos = [];
-                    this.searchTerm = '';
+                    this.filterValueTodoTitle = '';
                     this.todosCountUpdate = new core_1.EventEmitter();
                     this.todosCountOfNotCompletedUpdate = new core_1.EventEmitter();
                 }
                 TodoListComponent.prototype.ngOnChanges = function (changes) {
-                    if (changes['searchTerm']) {
-                        if (typeof this.searchTerm === 'string') {
+                    if (changes['filterValueTodoTitle']) {
+                        if (typeof this.filterValueTodoTitle === 'string') {
                             this.filterTodosBySearchTerm();
                         }
                     }
@@ -89,7 +89,7 @@ System.register(['angular2/core', '../../services/todo.service'], function(expor
                 TodoListComponent.prototype.filterTodosBySearchTerm = function () {
                     var _this = this;
                     return this.todos = this.TodoService.todos.filter(function (item) {
-                        if (item.title.toLowerCase().indexOf(_this.searchTerm.toLowerCase()) > -1) {
+                        if (item.title.toLowerCase().indexOf(_this.filterValueTodoTitle.toLowerCase()) > -1) {
                             return true;
                         }
                     });
@@ -118,7 +118,7 @@ System.register(['angular2/core', '../../services/todo.service'], function(expor
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', String)
-                ], TodoListComponent.prototype, "searchTerm", void 0);
+                ], TodoListComponent.prototype, "filterValueTodoTitle", void 0);
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', Symbol)

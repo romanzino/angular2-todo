@@ -4,10 +4,10 @@
 <div class="well">
 	<h3>List of todos ({{todosCount}})</h3>
 
-	<todo-search 
-		(searchTermUpdate)="searchTerm = $event"></todo-search>
+	<todo-search *ngIf="todosCount > 0"
+		(filterValueTodoTitleUpdate)="filterValueTodoTitle = $event"></todo-search>
 
-	<todo-list 
+	<todo-list [class.hide]="todosCount === 0"
 		(todosCountUpdate)="todosCount = $event"
 		(todosCountOfNotCompletedUpdate)="todosCountOfNotCompleted = $event"
 		[searchTerm]="searchTerm"

@@ -37,7 +37,7 @@ System.register(['angular2/core', '../todo-add/todo-add.component', '../todo-lis
                 function TodoComponent(router, routeParams) {
                     this.router = router;
                     this.routeParams = routeParams;
-                    this.filterByTodosStatus = routeParams.get('todoStatus');
+                    this.filterValueTodosStatus = routeParams.get('todoStatus');
                 }
                 TodoComponent = __decorate([
                     core_1.Component({

@@ -13,10 +13,10 @@ import {Router, RouteParams} from 'angular2/router';
 })
 
 export class TodoComponent {
-	filterByTodosStatus: string|{};
+	filterValueTodosStatus: string|{};
 
 	constructor(private router: Router, private routeParams: RouteParams) {
-		this.filterByTodosStatus = routeParams.get('todoStatus');
+		this.filterValueTodosStatus = routeParams.get('todoStatus');
 	}
 }
 

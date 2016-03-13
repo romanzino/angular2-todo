@@ -19,15 +19,15 @@
 		<div class="btn-group">
 			<a 
 				[routerLink]="['Todos']"
-				[class.active]="!filterByTodosStatus"
+				[class.active]="!filterValueTodosStatus"
 				class="btn btn-default">All</a>
 			<a 
 				[routerLink]="['Todos', {todoStatus: TodoService.todosStatus[0]}]"
-				[class.active]="filterByTodosStatus === TodoService.todosStatus[0]"
+				[class.active]="filterValueTodosStatus === TodoService.todosStatus[0]"
 				class="btn btn-default">Active</a>
 			<a
 				[routerLink]="['Todos', {todoStatus: TodoService.todosStatus[1]}]"
-				[class.active]="filterByTodosStatus === TodoService.todosStatus[1]"
+				[class.active]="filterValueTodosStatus === TodoService.todosStatus[1]"
 				class="btn btn-default">Completed</a>
 		</div>
 	</div>

@@ -12,7 +12,7 @@ import {TodoService} from '../../services/todo.service';
 export class TodoActionsComponent{
 	@Input() todosCount: number;
 	@Input() todosCountOfNotCompleted: number;
-	@Input() filterByTodosStatus: string | {};
+	@Input() filterValueTodosStatus: string | {};
 	@Output() onMarkAllTodosAs: EventEmitter<any> = new EventEmitter();
 	
 	constructor(private TodoService: TodoService) {

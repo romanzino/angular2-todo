@@ -29,21 +29,16 @@ System.register(['angular2/core', '../../services/todo.service'], function(expor
                     this.todosCountUpdate = new core_1.EventEmitter();
                     this.todosCountOfNotCompletedUpdate = new core_1.EventEmitter();
                 }
-                TodoListComponent.prototype.ngOnInit = function () {
-                    this.filterTodosByStatus();
-                    this.afterFilteringTodos();
-                };
                 TodoListComponent.prototype.ngOnChanges = function (changes) {
                     if (changes['searchTerm']) {
                         if (typeof this.searchTerm === 'string') {
                             this.filterTodosBySearchTerm();
-                            this.afterFilteringTodos();
                         }
                     }
-                    if (changes['onMarkAllTodosAs']) {
+                    if (changes['onMarkAllTodosAs'] || changes['onAddTodo']) {
                         this.filterTodosByStatus();
-                        this.afterFilteringTodos();
                     }
+                    this.afterFilteringTodos();
                 };
                 TodoListComponent.prototype.removeTodo = function (todo) {
                     this.TodoService.removeTodo(todo);
@@ -79,9 +74,9 @@ System.register(['angular2/core', '../../services/todo.service'], function(expor
                 };
                 TodoListComponent.prototype.filterTodosByStatus = function () {
                     var _this = this;
-                    if (typeof this.filterByTodosStatus === 'string') {
+                    if (typeof this.filterValueTodosStatus === 'string') {
                         this.todos = this.TodoService.todos.filter(function (item) {
-                            if (item.status === _this.filterByTodosStatus) {
+                            if (item.status === _this.filterValueTodosStatus) {
                                 return true;
                             }
                         });
@@ -119,7 +114,7 @@ System.register(['angular2/core', '../../services/todo.service'], function(expor
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', Object)
-                ], TodoListComponent.prototype, "filterByTodosStatus", void 0);
+                ], TodoListComponent.prototype, "filterValueTodosStatus", void 0);
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', String)
@@ -128,6 +123,10 @@ System.register(['angular2/core', '../../services/todo.service'], function(expor
                     core_1.Input(), 
                     __metadata('design:type', Symbol)
                 ], TodoListComponent.prototype, "onMarkAllTodosAs", void 0);
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Symbol)
+                ], TodoListComponent.prototype, "onAddTodo", void 0);
                 __decorate([
                     core_1.Output(), 
                     __metadata('design:type', core_1.EventEmitter)

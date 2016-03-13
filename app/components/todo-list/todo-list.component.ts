@@ -1,7 +1,4 @@
-import {Component, 
-	Input, Output, 
-	EventEmitter, 
-	OnInit, OnChanges, SimpleChange} from 'angular2/core';
+import {Component, Input, Output, EventEmitter, OnChanges, SimpleChange} from 'angular2/core';
 import {TodoService} from '../../services/todo.service';
 import {TodoModel} from '../../models/todo.model';
 
@@ -11,13 +8,14 @@ import {TodoModel} from '../../models/todo.model';
   styleUrls: ['./app/components/todo-list/todo-list.component.css']
 })
 
-export class TodoListComponent implements OnInit, OnChanges {
+export class TodoListComponent implements OnChanges {
 	todos: Array<TodoModel> = [];
 	todosCount: number;
 	todoThatIsEdited: TodoModel;
-	@Input() filterByTodosStatus: string|{};
+	@Input() filterValueTodosStatus: string|{};
 	@Input() searchTerm: string = '';
 	@Input() onMarkAllTodosAs: symbol;
+	@Input() onAddTodo: symbol;
 	@Output() todosCountUpdate: EventEmitter<any> = new EventEmitter();
 	@Output() todosCountOfNotCompletedUpdate: EventEmitter<any> = new EventEmitter();
 
@@ -25,23 +23,18 @@ export class TodoListComponent implements OnInit, OnChanges {
 		
 	}
 
-	ngOnInit() {
-		this.filterTodosByStatus();
-		this.afterFilteringTodos();
-	}
-
 	ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
 		if (changes['searchTerm']) {
 			if (typeof this.searchTerm === 'string') {
 				this.filterTodosBySearchTerm();
-				this.afterFilteringTodos();
 			}
 		}
 
-		if (changes['onMarkAllTodosAs']) {
+		if (changes['onMarkAllTodosAs'] || changes['onAddTodo']) {
 			this.filterTodosByStatus();
-			this.afterFilteringTodos();
 		}
+
+		this.afterFilteringTodos();
 	}
 
 	removeTodo(todo: TodoModel) {
@@ -84,9 +77,9 @@ export class TodoListComponent implements OnInit, OnChanges {
 	}
 
 	private filterTodosByStatus(): Array<TodoModel> {
-		if (typeof this.filterByTodosStatus === 'string') {
+		if (typeof this.filterValueTodosStatus === 'string') {
 			this.todos = this.TodoService.todos.filter((item) => {
-				if (item.status === this.filterByTodosStatus) {
+				if (item.status === this.filterValueTodosStatus) {
 					return true;
 				}
 			});

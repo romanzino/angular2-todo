@@ -25,14 +25,20 @@ System.register(['angular2/core', '../../services/todo.service'], function(expor
                 function TodoAddComponent(TodoService) {
                     this.TodoService = TodoService;
                     this.formData = {};
+                    this.onAddTodo = new core_1.EventEmitter();
                 }
                 TodoAddComponent.prototype.onSubmit = function () {
                     this.TodoService.createTodo(this.formData);
+                    this.onAddTodo.emit(Symbol());
                     this.reset();
                 };
                 TodoAddComponent.prototype.reset = function () {
                     this.formData = {};
                 };
+                __decorate([
+                    core_1.Output(), 
+                    __metadata('design:type', core_1.EventEmitter)
+                ], TodoAddComponent.prototype, "onAddTodo", void 0);
                 TodoAddComponent = __decorate([
                     core_1.Component({
                         selector: 'todo-add',

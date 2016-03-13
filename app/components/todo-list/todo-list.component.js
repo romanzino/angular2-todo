@@ -27,21 +27,30 @@ System.register(['angular2/core', '../../services/todo.service'], function(expor
                     this.todos = [];
                     this.searchTerm = '';
                     this.todosCountUpdate = new core_1.EventEmitter();
+                    this.todosCountOfNotCompletedUpdate = new core_1.EventEmitter();
                 }
                 TodoListComponent.prototype.ngOnInit = function () {
                     this.filterTodosByStatus();
                     this.afterFilteringTodos();
+                    console.log(this.onMarkAllAsCompleted);
                 };
                 TodoListComponent.prototype.ngOnChanges = function (changes) {
+                    console.log(changes);
                     if (changes['searchTerm']) {
                         if (typeof this.searchTerm === 'string') {
                             this.filterTodosBySearchTerm();
                             this.afterFilteringTodos();
                         }
                     }
+                    if (changes['onMarkAllAsCompleted']) {
+                        if (this.onMarkAllAsCompleted) {
+                            this.afterFilteringTodos();
+                        }
+                    }
                 };
                 TodoListComponent.prototype.removeTodo = function (todo) {
                     this.TodoService.removeTodo(todo);
+                    this.afterFilteringTodos();
                 };
                 TodoListComponent.prototype.editTodo = function (todo) {
                     this.todoThatIsEdited = todo;
@@ -74,13 +83,16 @@ System.register(['angular2/core', '../../services/todo.service'], function(expor
                 TodoListComponent.prototype.filterTodosByStatus = function () {
                     var _this = this;
                     if (typeof this.filterByTodosStatus === 'string') {
-                        return this.todos = this.TodoService.todos.filter(function (item) {
+                        this.todos = this.TodoService.todos.filter(function (item) {
                             if (item.status === _this.filterByTodosStatus) {
                                 return true;
                             }
                         });
                     }
-                    return this.todos = this.TodoService.todos;
+                    else {
+                        this.todos = this.TodoService.todos;
+                    }
+                    return this.todos;
                 };
                 TodoListComponent.prototype.filterTodosBySearchTerm = function () {
                     var _this = this;
@@ -91,8 +103,24 @@ System.register(['angular2/core', '../../services/todo.service'], function(expor
                     });
                 };
                 TodoListComponent.prototype.afterFilteringTodos = function () {
+                    this.getCountOfNotCompletedTodos();
                     this.todosCount = this.todos.length;
                     this.todosCountUpdate.emit(this.todosCount);
+                    return this.todosCount;
+                };
+                TodoListComponent.prototype.getCountOfNotCompletedTodos = function () {
+                    var todosCountOfNotCompleted = 0;
+                    for (var _i = 0, _a = this.todos; _i < _a.length; _i++) {
+                        var todo = _a[_i];
+                        if (todo.status !== this.TodoService.todosStatus[1]) {
+                            todosCountOfNotCompleted++;
+                        }
+                    }
+                    if (todosCountOfNotCompleted > 1) {
+                        this.onMarkAllAsCompleted = false;
+                    }
+                    this.todosCountOfNotCompletedUpdate.emit(todosCountOfNotCompleted);
+                    return todosCountOfNotCompleted;
                 };
                 __decorate([
                     core_1.Input(), 
@@ -103,9 +131,17 @@ System.register(['angular2/core', '../../services/todo.service'], function(expor
                     __metadata('design:type', String)
                 ], TodoListComponent.prototype, "searchTerm", void 0);
                 __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Boolean)
+                ], TodoListComponent.prototype, "onMarkAllAsCompleted", void 0);
+                __decorate([
                     core_1.Output(), 
                     __metadata('design:type', core_1.EventEmitter)
                 ], TodoListComponent.prototype, "todosCountUpdate", void 0);
+                __decorate([
+                    core_1.Output(), 
+                    __metadata('design:type', core_1.EventEmitter)
+                ], TodoListComponent.prototype, "todosCountOfNotCompletedUpdate", void 0);
                 TodoListComponent = __decorate([
                     core_1.Component({
                         selector: 'todo-list',

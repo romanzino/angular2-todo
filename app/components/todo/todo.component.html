@@ -8,8 +8,13 @@
 
 	<todo-list 
 		(todosCountUpdate)="todosCount = $event"
+		(todosCountOfNotCompletedUpdate)="todosCountOfNotCompleted = $event"
 		[searchTerm]="searchTerm"
-		[filterByTodosStatus]="filterByTodosStatus"></todo-list>
+		[filterByTodosStatus]="filterByTodosStatus"
+		[onMarkAllAsCompleted]="onMarkAllAsCompleted"></todo-list>
 
-	<todo-actions [todosCount]="todosCount"></todo-actions>
+	<todo-actions
+		[todosCount]="todosCount"
+		[todosCountOfNotCompleted]="todosCountOfNotCompleted"
+		(onMarkAllAsCompleted)="onMarkAllAsCompleted = $event"></todo-actions>
 </div>

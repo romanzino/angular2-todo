@@ -17,7 +17,9 @@ export class TodoListComponent implements OnInit, OnChanges {
 	todoThatIsEdited: TodoModel;
 	@Input() filterByTodosStatus: string|{};
 	@Input() searchTerm: string = '';
+	@Input() onMarkAllAsCompleted: boolean;
 	@Output() todosCountUpdate: EventEmitter<any> = new EventEmitter();
+	@Output() todosCountOfNotCompletedUpdate: EventEmitter<any> = new EventEmitter();
 
 	constructor(private TodoService: TodoService) {
 		
@@ -26,12 +28,21 @@ export class TodoListComponent implements OnInit, OnChanges {
 	ngOnInit() {
 		this.filterTodosByStatus();
 		this.afterFilteringTodos();
+
+		console.log(this.onMarkAllAsCompleted);
 	}
 
 	ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
+		console.log(changes);
 		if (changes['searchTerm']) {
 			if (typeof this.searchTerm === 'string') {
 				this.filterTodosBySearchTerm();
+				this.afterFilteringTodos();
+			}
+		}
+
+		if (changes['onMarkAllAsCompleted']) {
+			if (this.onMarkAllAsCompleted) {
 				this.afterFilteringTodos();
 			}
 		}
@@ -39,6 +50,7 @@ export class TodoListComponent implements OnInit, OnChanges {
 
 	removeTodo(todo: TodoModel) {
 		this.TodoService.removeTodo(todo);
+		this.afterFilteringTodos();
 	}
 
 	editTodo(todo: TodoModel) {
@@ -77,13 +89,17 @@ export class TodoListComponent implements OnInit, OnChanges {
 
 	private filterTodosByStatus(): Array<TodoModel> {
 		if (typeof this.filterByTodosStatus === 'string') {
-			return this.todos = this.TodoService.todos.filter((item) => {
+			this.todos = this.TodoService.todos.filter((item) => {
 				if (item.status === this.filterByTodosStatus) {
 					return true;
 				}
 			});
 		}
-		return this.todos = this.TodoService.todos;
+		else {
+			this.todos = this.TodoService.todos;
+		}
+
+		return this.todos;
 	}
 
 	private filterTodosBySearchTerm(): Array<TodoModel> {
@@ -95,7 +111,28 @@ export class TodoListComponent implements OnInit, OnChanges {
 	}
 
 	private afterFilteringTodos() {
+		this.getCountOfNotCompletedTodos();
+
 		this.todosCount = this.todos.length;
 		this.todosCountUpdate.emit(this.todosCount);
+
+		return this.todosCount;
+	}
+
+	private getCountOfNotCompletedTodos():number {
+		let todosCountOfNotCompleted: number = 0;
+
+		for (let todo of this.todos) {
+			if (todo.status !== this.TodoService.todosStatus[1]) {
+				todosCountOfNotCompleted++;
+			}
+		}
+
+		if (todosCountOfNotCompleted > 1) {
+			this.onMarkAllAsCompleted = false;
+		}
+
+		this.todosCountOfNotCompletedUpdate.emit(todosCountOfNotCompleted);
+		return todosCountOfNotCompleted;
 	}
 }

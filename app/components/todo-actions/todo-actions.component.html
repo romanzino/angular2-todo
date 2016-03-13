@@ -1,7 +1,10 @@
 <div class="actions">
 	<div class="actions__top">
 		<div class="btn-group">
-			<button *ngIf="todosCount > 0" class="btn btn-default" (click)="markAllTodosAsCompleted()">Mark all as completed</button>
+			<button 
+				class="btn btn-default" 
+				*ngIf="todosCountOfNotCompleted > 1"
+				(click)="markAllTodosAsCompleted()">Mark all as completed</button>
 		</div>
 	</div>
 

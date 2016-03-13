@@ -1,4 +1,4 @@
-import {Component, Input} from 'angular2/core';
+import {Component, Input, Output, EventEmitter} from 'angular2/core';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 import {TodoService} from '../../services/todo.service';
 
@@ -10,13 +10,16 @@ import {TodoService} from '../../services/todo.service';
 })
 
 export class TodoActionsComponent{
-	@Input() todosCount;
+	@Input() todosCount: number;
+	@Input() todosCountOfNotCompleted: number;
+	@Output() onMarkAllAsCompleted: EventEmitter<any> = new EventEmitter();
 	
-	constructor(public TodoService: TodoService) {
+	constructor(private TodoService: TodoService) {
 		
 	}
 
-	markAllTodosAsCompleted() {
+	private markAllTodosAsCompleted() {
 		this.TodoService.markAllTodosAsCompleted();
+		this.onMarkAllAsCompleted.emit(true);
 	}
 }

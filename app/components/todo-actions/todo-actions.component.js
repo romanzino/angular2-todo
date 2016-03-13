@@ -27,14 +27,24 @@ System.register(['angular2/core', 'angular2/router', '../../services/todo.servic
             TodoActionsComponent = (function () {
                 function TodoActionsComponent(TodoService) {
                     this.TodoService = TodoService;
+                    this.onMarkAllAsCompleted = new core_1.EventEmitter();
                 }
                 TodoActionsComponent.prototype.markAllTodosAsCompleted = function () {
                     this.TodoService.markAllTodosAsCompleted();
+                    this.onMarkAllAsCompleted.emit(true);
                 };
                 __decorate([
                     core_1.Input(), 
-                    __metadata('design:type', Object)
+                    __metadata('design:type', Number)
                 ], TodoActionsComponent.prototype, "todosCount", void 0);
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Number)
+                ], TodoActionsComponent.prototype, "todosCountOfNotCompleted", void 0);
+                __decorate([
+                    core_1.Output(), 
+                    __metadata('design:type', core_1.EventEmitter)
+                ], TodoActionsComponent.prototype, "onMarkAllAsCompleted", void 0);
                 TodoActionsComponent = __decorate([
                     core_1.Component({
                         selector: 'todo-actions',

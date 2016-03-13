@@ -10,7 +10,7 @@
 	<todo-list [class.hide]="todosCount === 0"
 		(todosCountUpdate)="todosCount = $event"
 		(todosCountOfNotCompletedUpdate)="todosCountOfNotCompleted = $event"
-		[searchTerm]="searchTerm"
+		[filterValueTodoTitle]="filterValueTodoTitle"
 		[filterValueTodosStatus]="filterValueTodosStatus"
 		[onMarkAllTodosAs]="onMarkAllTodosAs"
 		[onAddTodo]="onAddTodo"></todo-list>

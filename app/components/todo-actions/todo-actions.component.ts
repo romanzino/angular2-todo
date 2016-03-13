@@ -12,14 +12,15 @@ import {TodoService} from '../../services/todo.service';
 export class TodoActionsComponent{
 	@Input() todosCount: number;
 	@Input() todosCountOfNotCompleted: number;
-	@Output() onMarkAllAsCompleted: EventEmitter<any> = new EventEmitter();
+	@Output() onMarkAllTodosAs: EventEmitter<any> = new EventEmitter();
 	
 	constructor(private TodoService: TodoService) {
 		
 	}
 
-	private markAllTodosAsCompleted() {
-		this.TodoService.markAllTodosAsCompleted();
-		this.onMarkAllAsCompleted.emit(true);
+	private markAllTodosAs(statusIndex) {
+		this.TodoService.markAllTodosAs(statusIndex);
+		this.onMarkAllTodosAs.emit(Symbol());
 	}
+
 }

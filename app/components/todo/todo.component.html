@@ -11,10 +11,10 @@
 		(todosCountOfNotCompletedUpdate)="todosCountOfNotCompleted = $event"
 		[searchTerm]="searchTerm"
 		[filterByTodosStatus]="filterByTodosStatus"
-		[onMarkAllAsCompleted]="onMarkAllAsCompleted"></todo-list>
+		[onMarkAllTodosAs]="onMarkAllTodosAs"></todo-list>
 
 	<todo-actions
 		[todosCount]="todosCount"
 		[todosCountOfNotCompleted]="todosCountOfNotCompleted"
-		(onMarkAllAsCompleted)="onMarkAllAsCompleted = $event"></todo-actions>
+		(onMarkAllTodosAs)="onMarkAllTodosAs = $event"></todo-actions>
 </div>

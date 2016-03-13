@@ -32,20 +32,17 @@ System.register(['angular2/core', '../../services/todo.service'], function(expor
                 TodoListComponent.prototype.ngOnInit = function () {
                     this.filterTodosByStatus();
                     this.afterFilteringTodos();
-                    console.log(this.onMarkAllAsCompleted);
                 };
                 TodoListComponent.prototype.ngOnChanges = function (changes) {
-                    console.log(changes);
                     if (changes['searchTerm']) {
                         if (typeof this.searchTerm === 'string') {
                             this.filterTodosBySearchTerm();
                             this.afterFilteringTodos();
                         }
                     }
-                    if (changes['onMarkAllAsCompleted']) {
-                        if (this.onMarkAllAsCompleted) {
-                            this.afterFilteringTodos();
-                        }
+                    if (changes['onMarkAllTodosAs']) {
+                        this.filterTodosByStatus();
+                        this.afterFilteringTodos();
                     }
                 };
                 TodoListComponent.prototype.removeTodo = function (todo) {
@@ -116,9 +113,6 @@ System.register(['angular2/core', '../../services/todo.service'], function(expor
                             todosCountOfNotCompleted++;
                         }
                     }
-                    if (todosCountOfNotCompleted > 1) {
-                        this.onMarkAllAsCompleted = false;
-                    }
                     this.todosCountOfNotCompletedUpdate.emit(todosCountOfNotCompleted);
                     return todosCountOfNotCompleted;
                 };
@@ -132,8 +126,8 @@ System.register(['angular2/core', '../../services/todo.service'], function(expor
                 ], TodoListComponent.prototype, "searchTerm", void 0);
                 __decorate([
                     core_1.Input(), 
-                    __metadata('design:type', Boolean)
-                ], TodoListComponent.prototype, "onMarkAllAsCompleted", void 0);
+                    __metadata('design:type', Symbol)
+                ], TodoListComponent.prototype, "onMarkAllTodosAs", void 0);
                 __decorate([
                     core_1.Output(), 
                     __metadata('design:type', core_1.EventEmitter)

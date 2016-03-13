@@ -49,11 +49,10 @@ export class TodoService {
 		this.saveTodos();
 	}
 
-	markAllTodosAsCompleted() {
+	markAllTodosAs(status: string) {
+
 		for (let todo of this.todos) {
-			if (todo.status === this.todosStatus[0]) {
-				todo.status = this.todosStatus[1];
-			}
+			todo.status = status;
 		}
 
 		this.saveTodos();

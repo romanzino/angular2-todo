@@ -17,7 +17,7 @@ export class TodoListComponent implements OnInit, OnChanges {
 	todoThatIsEdited: TodoModel;
 	@Input() filterByTodosStatus: string|{};
 	@Input() searchTerm: string = '';
-	@Input() onMarkAllAsCompleted: boolean;
+	@Input() onMarkAllTodosAs: symbol;
 	@Output() todosCountUpdate: EventEmitter<any> = new EventEmitter();
 	@Output() todosCountOfNotCompletedUpdate: EventEmitter<any> = new EventEmitter();
 
@@ -28,12 +28,9 @@ export class TodoListComponent implements OnInit, OnChanges {
 	ngOnInit() {
 		this.filterTodosByStatus();
 		this.afterFilteringTodos();
-
-		console.log(this.onMarkAllAsCompleted);
 	}
 
 	ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
-		console.log(changes);
 		if (changes['searchTerm']) {
 			if (typeof this.searchTerm === 'string') {
 				this.filterTodosBySearchTerm();
@@ -41,10 +38,9 @@ export class TodoListComponent implements OnInit, OnChanges {
 			}
 		}
 
-		if (changes['onMarkAllAsCompleted']) {
-			if (this.onMarkAllAsCompleted) {
-				this.afterFilteringTodos();
-			}
+		if (changes['onMarkAllTodosAs']) {
+			this.filterTodosByStatus();
+			this.afterFilteringTodos();
 		}
 	}
 
@@ -126,10 +122,6 @@ export class TodoListComponent implements OnInit, OnChanges {
 			if (todo.status !== this.TodoService.todosStatus[1]) {
 				todosCountOfNotCompleted++;
 			}
-		}
-
-		if (todosCountOfNotCompleted > 1) {
-			this.onMarkAllAsCompleted = false;
 		}
 
 		this.todosCountOfNotCompletedUpdate.emit(todosCountOfNotCompleted);

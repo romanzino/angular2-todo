@@ -34,7 +34,13 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/router'
             }],
         execute: function() {
             Main = (function () {
-                function Main() {
+                function Main(router) {
+                    var _this = this;
+                    this.router = router;
+                    this.path = '';
+                    router.subscribe(function (value) {
+                        _this.path = value;
+                    });
                 }
                 Main = __decorate([
                     core_1.Component({
@@ -50,12 +56,12 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/router'
                             useAsDefault: true
                         },
                         {
-                            path: '/about',
+                            path: '/about/',
                             name: 'About',
                             component: about_component_1.AboutComponent
                         },
                     ]), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [router_1.Router])
                 ], Main);
                 return Main;
             }());

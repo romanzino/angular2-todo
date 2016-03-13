@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core';
 import {bootstrap} from 'angular2/platform/browser';
-import {ROUTER_PROVIDERS, ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
+import {ROUTER_PROVIDERS, ROUTER_DIRECTIVES, RouteConfig, Router} from 'angular2/router';
 import {TodoComponent} from './components/todo/todo.component'
 import {TodoService} from './services/todo.service';
 import {AboutComponent} from './components/about/about.component';
@@ -19,14 +19,20 @@ import {AboutComponent} from './components/about/about.component';
 		useAsDefault: true
 	},
 	{
-		path: '/about',
+		path: '/about/',
 		name: 'About',
 		component: AboutComponent
 	},
 ])
 
 class Main {
+	private path: string = '';
 
+	constructor (private router: Router) {
+		router.subscribe((value) => {
+			this.path = value;
+		});
+	}
 }
 
 bootstrap(Main, [TodoService, ROUTER_PROVIDERS]);

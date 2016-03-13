@@ -7,11 +7,15 @@
 	<div class="navbar-default">
 		<div class="container-fluid">
 			<ul class="nav navbar-nav">
-				<li>
-					<a [routerLink]="['Todos']">Main</a>
+				<li
+					[class.active]="path.startsWith('todos') || path === ''">
+					<a
+						[routerLink]="['Todos']">Main</a>
 				</li>
-				<li>
-					<a [routerLink]="['About']">About</a>
+				<li
+					[class.active]="path.startsWith('about')">
+					<a
+						[routerLink]="['About']">About</a>
 				</li>
 			</ul>
 		</div>

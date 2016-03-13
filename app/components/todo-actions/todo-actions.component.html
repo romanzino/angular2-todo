@@ -17,9 +17,18 @@
 		<span>Show todos:</span>
 
 		<div class="btn-group">
-			<a [routerLink]="['Todos']" class="btn btn-default">All</a>
-			<a [routerLink]="['Todos', {todoStatus: 'active'}]" class="btn btn-default">Active</a>
-			<a [routerLink]="['Todos', {todoStatus: 'completed'}]" class="btn btn-default">Completed</a>
+			<a 
+				[routerLink]="['Todos']"
+				[class.active]="!filterByTodosStatus"
+				class="btn btn-default">All</a>
+			<a 
+				[routerLink]="['Todos', {todoStatus: TodoService.todosStatus[0]}]"
+				[class.active]="filterByTodosStatus === TodoService.todosStatus[0]"
+				class="btn btn-default">Active</a>
+			<a
+				[routerLink]="['Todos', {todoStatus: TodoService.todosStatus[1]}]"
+				[class.active]="filterByTodosStatus === TodoService.todosStatus[1]"
+				class="btn btn-default">Completed</a>
 		</div>
 	</div>
 </div>

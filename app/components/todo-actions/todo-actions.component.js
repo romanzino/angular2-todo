@@ -42,6 +42,10 @@ System.register(['angular2/core', 'angular2/router', '../../services/todo.servic
                     __metadata('design:type', Number)
                 ], TodoActionsComponent.prototype, "todosCountOfNotCompleted", void 0);
                 __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Object)
+                ], TodoActionsComponent.prototype, "filterByTodosStatus", void 0);
+                __decorate([
                     core_1.Output(), 
                     __metadata('design:type', core_1.EventEmitter)
                 ], TodoActionsComponent.prototype, "onMarkAllTodosAs", void 0);
